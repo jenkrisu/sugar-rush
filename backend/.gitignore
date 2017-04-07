@@ -2,7 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### Ignore Angular dist ###
-src/main/resources/static/
+src/main/resources/static/dist/
 
 ### STS ###
 .apt_generated
