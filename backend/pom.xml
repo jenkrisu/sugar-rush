@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>store</name>
-	<description>Sweet Shop Boutique</description>
+	<description>Sweet Tooth Boutique</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
