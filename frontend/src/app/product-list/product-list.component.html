@@ -1,3 +1,15 @@
-<p>
-  product-list works!
-</p>
+<table>
+  <thead>
+    <td>
+      Title
+    </td>
+
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products">
+      <td>
+        {{p.title}}
+      </td>
+    </tr>
+  </tbody>
+</table>

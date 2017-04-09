@@ -17,7 +17,7 @@ export class AppComponent {
 this.http.get('/api/products').map(res => res.json()).subscribe(
       data => {
         console.log('data')
-        console.log(data)
+        console.log(data._embedded.products)
       },
       error => {
         console.log('error')

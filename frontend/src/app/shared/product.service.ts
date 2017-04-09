@@ -8,14 +8,10 @@ export class ProductService {
 
   }
 
-  get() {
+  getProducts() {
     return this.http.get("/api/products").map(res => {
-      res.json().subscribe(data => {
-        console.log("Data: " + data);
-        return data;
-      }, err => {
-        console.log("Error: " + err);
-      })
-    })
+      console.log(res.json()._embedded.products);
+      return res.json()._embedded.products;
+    });
   }
 }
