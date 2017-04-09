@@ -4,7 +4,7 @@
     <div class="col-md-8">
       <ul class="nav justify-content-end">
         <li class="nav-item">
-          <a class="nav-link" href="#">Shopping Cart (0)</a>
+          <a class="nav-link" routerLink="/">Shopping Cart (0)</a>
         </li>
       </ul>
     </div>
@@ -25,20 +25,18 @@
     <div class="col-md-6">
       <ul class="nav justify-content-center">
        <li class="nav-item">
-            <a class="nav-link active" href="#">What's New</a>
+            <a class="nav-link active" routerLink="">What's New</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Our Products</a>
+            <a class="nav-link" routerLink="/products">Our Products</a>
         </li>
       </ul>
     </div>
   </div>
 </div>
 
-
-<!-- <router-outlet></router-outlet> -->
-
-<button (click)="onClick()" >Click</button>
-<app-product-list></app-product-list>
+<!-- Content -->
+<router-outlet></router-outlet>
 
 <!-- Footer -->
+<!-- TODO -->
