@@ -1,13 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
+
+import { Product } from '../models/product';
 
 @Injectable()
 export class ProductService {
 
-  constructor(private http: Http) {
+  private sbtShoppingCart = new BehaviorSubject<Array<Product>>([]);
 
+  constructor(private http: Http) {
+  }
+
+  getShoppingCart() {
+    return this.sbtShoppingCart;
+  }
+
+  setShoppingCart(cart: Product[]) {
+    this.sbtShoppingCart.next(cart);
   }
 
   getProducts() {
