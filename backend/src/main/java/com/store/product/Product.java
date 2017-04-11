@@ -51,11 +51,6 @@ public class Product {
      */
     private int stock;
 
-    /**
-     * TODO: Defines product as new.
-     */
-    private boolean isNew;
-
     // Images saved to another table
     // @
     // private Image image ?
@@ -66,15 +61,13 @@ public class Product {
 
     public Product() {}
 
-    public Product(String title, String description, String ingredients, int weight, double price, int stock,
-                   boolean isNew) {
+    public Product(String title, String description, String ingredients, int weight, double price, int stock) {
         this.title = title;
         this.description = description;
         this.ingredients = ingredients;
         this.weight = weight;
         this.price = price;
         this.stock = stock;
-        this.isNew = isNew;
     }
 
 }
