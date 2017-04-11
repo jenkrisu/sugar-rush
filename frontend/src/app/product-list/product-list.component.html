@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="card-deck">
-  <app-product id="product-card" class="card" *ngFor="let p of products"
-               [product]="p" (click)="goToDetail(p)"></app-product>
+  <div class="row align-items-center justify-content-center">
+    <app-product *ngFor="let p of products" [product]="p">
+    </app-product>
   </div>
 </div>
