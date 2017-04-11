@@ -3,21 +3,26 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductService } from './shared/product.service';
+import { NewProductsComponent } from './new-products/new-products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    ProductListComponent
+    ProductListComponent,
+    NewProductsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
