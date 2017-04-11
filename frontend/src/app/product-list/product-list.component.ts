@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../shared/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -10,7 +11,8 @@ export class ProductListComponent implements OnInit {
 
   products;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+              private router: Router) {
 
   }
 
@@ -29,7 +31,8 @@ export class ProductListComponent implements OnInit {
       );
   }
 
-  displayProduct(p) {
-    console.log(p);
+  goToDetail(p) {
+    console.log(p.id);
+    this.router.navigate(['/products', p.id]);
   }
 }
