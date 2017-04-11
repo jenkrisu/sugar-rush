@@ -1,15 +1,2 @@
-<table>
-  <thead>
-    <td>
-      Title
-    </td>
-
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of products">
-      <td>
-        {{p.title}}
-      </td>
-    </tr>
-  </tbody>
-</table>
+<app-product *ngFor="let p of products"
+             [product]="p" (click)="displayProduct(p)"></app-product>

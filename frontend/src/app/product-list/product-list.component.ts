@@ -28,4 +28,8 @@ export class ProductListComponent implements OnInit {
           }
       );
   }
+
+  displayProduct(p) {
+    console.log(p);
+  }
 }
