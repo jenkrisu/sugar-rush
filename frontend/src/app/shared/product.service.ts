@@ -16,4 +16,11 @@ export class ProductService {
       return res.json()._embedded.products;
     });
   }
+
+  getProduct(id) {
+    return this.http.get("/api/products/" + id).map(res => {
+      console.log("GetProduct response: " + res.json());
+      return res.json();
+    });
+  }
 }
