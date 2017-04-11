@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+
+import { ProductService } from './shared/product.service';
+import { Product } from './models/product';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +11,22 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+
+  public shoppingCart: Product[];
+  private subscription: Subscription;
+
+  constructor(private productService: ProductService) {
+  }
+
+  ngOnInit() {
+    this.subscription = this.productService.getShoppingCart().subscribe(
+      item => this.shoppingCart = item
+    );
+    
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
 }
