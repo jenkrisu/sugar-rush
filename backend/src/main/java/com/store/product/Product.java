@@ -51,6 +51,11 @@ public class Product {
      */
     private int stock;
 
+    /**
+     * Image url.
+     */
+    private String image;
+
     // Images saved to another table
     // @
     // private Image image ?
@@ -61,13 +66,14 @@ public class Product {
 
     public Product() {}
 
-    public Product(String title, String description, String ingredients, int weight, double price, int stock) {
+    public Product(String title, String description, String ingredients, int weight, double price, int stock, String image) {
         this.title = title;
         this.description = description;
         this.ingredients = ingredients;
         this.weight = weight;
         this.price = price;
         this.stock = stock;
+        this.image = image;
     }
 
 }
