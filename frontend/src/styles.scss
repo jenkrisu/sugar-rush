@@ -1,48 +1,12 @@
-#center-loader {
-    text-align: center;
-    width: 150px;
-    margin: 50px auto 0 auto;
-}
-
-#header-image {
-    padding-top: 80px;
-    padding-bottom: 40px;
-    background: url("assets/img/chocolate-assortment.jpg") no-repeat center bottom fixed;
-    background-size: cover;
-    box-shadow: 0px 1px 4px -2px rgba(0,0,0,0.55);
-
-    h3 {
-        padding: 10px;
-    }
-
-    p {
-        padding: 5px;
-    }
-}
-
-.opaque-background {
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 1px 4px -2px rgba(0,0,0,0.15);
-}
+@import url('https://fonts.googleapis.com/css?family=Federo');
 
 /* Bootstrap imported from node/modules for customization */
-
-/*!
- * Bootstrap v4.0.0-alpha.6 (https://getbootstrap.com)
- * Copyright 2011-2017 The Bootstrap Authors
- * Copyright 2011-2017 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
 
 // Core variables and mixins
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
-/*
-*
-* Custom scss here 
-*
-*/
+$font-family-sans-serif: "Open Sans", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
 
 // Reset and dependencies
 @import "~bootstrap/scss/normalize";
@@ -86,3 +50,64 @@
 
 // Utility classes
 @import "~bootstrap/scss/utilities";
+
+#center-loader {
+    text-align: center;
+    width: 150px;
+    margin: 50px auto 0 auto;
+}
+
+#header-image {
+    padding-top: 32vh;
+    height: 70vh;
+    background: url("assets/img/chocolate-assortment.jpg") no-repeat center center fixed;
+    background-size: cover;
+    box-shadow: 0px 1px 4px -2px rgba(0,0,0,0.55);
+
+    h2 {
+        padding: 10px;
+        font-family: 'Federo', $font-family-sans-serif;
+    }
+
+    p {
+        padding: 5px;
+    }
+}
+
+.opaque-background {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 1px 4px -2px rgba(0,0,0,0.15);
+}
+
+.navbar-brand {
+    font-family: 'Federo', $font-family-sans-serif;
+}
+
+.navbar {
+    background-color: rgba(255,255,255,1);
+    box-shadow: 0px 1px 4px -2px rgba(0,0,0,0.55);
+
+    a {
+       color: $navbar-light-color; 
+    &:hover {
+        color: $navbar-light-hover-color;
+    }
+    &:active, &:focus {
+        color: $navbar-light-active-color;
+        }
+    }
+}
+
+.navbar-toggler:hover {
+    cursor: pointer;
+}
+
+@include media-breakpoint-down(md) {
+    #nav-container {
+        margin-left: 0px;
+    }
+
+    .navbar-brand {
+        width: 200px;
+    }
+}

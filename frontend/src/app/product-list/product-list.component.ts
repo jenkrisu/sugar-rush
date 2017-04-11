@@ -31,8 +31,4 @@ export class ProductListComponent implements OnInit {
       );
   }
 
-  goToDetail(p) {
-    console.log(p.id);
-    this.router.navigate(['/products', p.id]);
-  }
 }

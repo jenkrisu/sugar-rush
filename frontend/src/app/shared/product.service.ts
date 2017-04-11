@@ -4,22 +4,29 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
 
+import { ShoppingCart } from '../models/shopping-cart';
+import { CartItem } from '../models/cart-item';
 import { Product } from '../models/product';
 
 @Injectable()
 export class ProductService {
 
-  private sbtShoppingCart = new BehaviorSubject<Array<Product>>([]);
+  private sbtShoppingCart = 
+    new BehaviorSubject<ShoppingCart>(new ShoppingCart(0, []));
 
   constructor(private http: Http) {
+    if (sessionStorage.getItem('sbtShoppingCart') != null) {
+      const cart = JSON.parse(sessionStorage.getItem('sbtShoppingCart'));
+      this.sbtShoppingCart.next(cart);
+    }
+  }
+
+  addToShoppingCart(product: Product) {
+    return false;
   }
 
   getShoppingCart() {
     return this.sbtShoppingCart;
-  }
-
-  setShoppingCart(cart: Product[]) {
-    this.sbtShoppingCart.next(cart);
   }
 
   getProducts() {
