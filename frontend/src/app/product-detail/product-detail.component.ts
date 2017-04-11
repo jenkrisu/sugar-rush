@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ProductService } from '../shared/product.service';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-product-detail',
@@ -8,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 export class ProductDetailComponent implements OnInit {
 
   product;
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: ProductService
+  ) { }
 
   ngOnInit() {
+    this.route.params
+      .switchMap((params: Params) =>
+        this.service.getProduct(+params['id']))
+        .subscribe((product) => {
+      this.product = product
+          console.log("Product: " + product);
+    });
   }
-
 }

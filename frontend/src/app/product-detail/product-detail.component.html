@@ -1,3 +1,24 @@
-<p>
-  product-detail works!
-</p>
+<div *ngIf="product">
+  <div>Image here</div>
+  <div>
+    <h3>{{ product.title }}</h3>
+    <div>
+      {{ product.price }}
+    </div>
+    <div>
+      <label>Stock</label>
+      {{ product.stock }}
+    </div>
+    <div>
+      <label>Ingredients</label>
+      {{ product.ingredients }}
+    </div>
+  </div>
+    <div>
+      <label>Description</label>
+      {{ product.description }}
+    </div>
+  <div>{{ product.weight }} g</div>
+  <div>
+</div>
+
