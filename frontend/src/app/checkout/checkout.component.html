@@ -1,0 +1,9 @@
+<div class="container">
+  <!-- TODO: Add possibility to change amount of items in cart -->
+  <ul class="list-group">
+    <li *ngFor="let item of items" class="list-group-item">
+      <a [routerLink]="['/products', item.product.id]">{{ item.product.title }}</a>, 
+      Amount: {{ item.amount }}, Price: {{ roundPrice(item.product.price * item.amount) }} &euro;
+    </li>
+  </ul>
+</div>

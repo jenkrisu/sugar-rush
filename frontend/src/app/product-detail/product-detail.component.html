@@ -1,0 +1,48 @@
+<div class="modal fade" id="productDetailModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Shopping Cart</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{ modalMessage }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div *ngIf="product">
+    <div id="header-and-img" class="row">
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <p class="h2">{{ product.title }}</p>
+        <img src="{{product.image}}" class="rounded img-fluid" />
+      </div>
+      <div id="details" class="col-xs-6 col-md-4">
+        <p id="price">{{ product.price }} €</p>
+        <p id="weight">{{ product.weight }} g</p>
+        <pre id="stock" class="card card-block card-header">Stock: {{ product.stock }}</pre>
+        <button id="cart" type="button" class="btn btn-primary"
+                btnCheckbox
+                btnCheckboxTrue="1" btnCheckboxFalse="0"
+                (click)="addToCart(product)"
+                data-toggle="modal" data-target="#productDetailModal">
+          Add To Cart
+        </button>
+
+        <div>
+          <p class="h4">Ingredients</p>
+          {{ product.ingredients }}
+        </div>
+      </div>
+    </div>
+    <div id="description">
+      <p class="h4">Description</p>
+      {{ product.description }}
+    </div>
+  </div>
+</div>
