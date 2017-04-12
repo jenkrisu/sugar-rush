@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ProductService } from '../shared/product.service';
+import { ShoppingCartService } from '../shared/shopping-cart.service';
 import { Product } from '../models/product';
 
 @Component({
@@ -13,16 +13,25 @@ export class ProductComponent implements OnInit {
   @Input()
   product;
 
-  constructor(private productService: ProductService) { }
+  @Output()
+  onAddedToCart = new EventEmitter<string>();
+
+  constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
   }
 
-  addToCart(product: Product) { 
-    let added = this.productService.addToShoppingCart(product);
+  addToCart(product: Product) {
+    let message = '';
+    let added = this.shoppingCartService.addToShoppingCart(product);
+
     if (!added) {
-      console.log('cannot add');
+      message = product.title + ' out of stock';
+    } else {
+      message = product.title + ' added to cart';
     }
+
+    this.onAddedToCart.emit(message);
   }
 
 }

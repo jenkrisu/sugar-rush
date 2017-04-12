@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ProductService } from './shared/product.service';
+import { ShoppingCartService } from './shared/shopping-cart.service';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +11,15 @@ import { ProductService } from './shared/product.service';
 
 export class AppComponent {
 
-  public shoppingCart: number;
+  public shoppingCartTotal: number;
   private subscription: Subscription;
 
-  constructor(private productService: ProductService) {
+  constructor(private shoppingCartService: ShoppingCartService) {
   }
 
   ngOnInit() {
-    this.subscription = this.productService.getShoppingCart().subscribe(
-      item => this.shoppingCart = item.totalAmount
+    this.subscription = this.shoppingCartService.getShoppingCartTotal().subscribe(
+      item => this.shoppingCartTotal = item
     );
     
   }

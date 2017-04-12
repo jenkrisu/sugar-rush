@@ -8,10 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { ProductService } from './shared/product.service';
 import { NewProductsComponent } from './new-products/new-products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+
+import { ProductService } from './shared/product.service';
+import { ShoppingCartService } from './shared/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ProductService],
+  providers: [
+    ProductService,
+    ShoppingCartService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
