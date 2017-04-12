@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class ProductListComponent implements OnInit {
 
+  modalMessage: string;
+  
   products;
 
   constructor(private productService: ProductService,
@@ -29,6 +31,10 @@ export class ProductListComponent implements OnInit {
             console.log(err);
           }
       );
+  }
+
+  onAddedToCart(message: string) {
+    this.modalMessage = message;
   }
 
 }

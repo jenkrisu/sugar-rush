@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ProductService } from '../shared/product.service';
 import 'rxjs/add/operator/switchMap';
+
+import { ProductService } from '../shared/product.service';
+import { ShoppingCartService } from '../shared/shopping-cart.service';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,12 +13,15 @@ import 'rxjs/add/operator/switchMap';
 })
 export class ProductDetailComponent implements OnInit {
 
+  modalMessage: string;
   product;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ProductService
-  ) { }
+    private service: ProductService,
+    private shoppingCartService: ShoppingCartService
+    ) { }
 
   ngOnInit() {
     this.route.params
@@ -26,4 +32,15 @@ export class ProductDetailComponent implements OnInit {
           console.log("Product: " + product);
     });
   }
+
+  addToCart(product: Product) {
+    let added = this.shoppingCartService.addToShoppingCart(product);
+
+    if (!added) {
+      this.modalMessage = product.title + ' out of stock';
+    } else {
+      this.modalMessage = product.title + ' added to cart';
+    }
+  }
+
 }
