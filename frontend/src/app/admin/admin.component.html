@@ -1,8 +1,13 @@
 <div class="container">
-  <p>
-    admin works!
-  </p>
-    <button *ngIf="!showAddProduct" (click)="changeAddProductStatus()">+ Add Product</button>
-    <button *ngIf="showAddProduct" (click)="changeAddProductStatus()">X</button>
+  <h2>
+    Admin
+  </h2>
+
+  <div>
+    <button type="button" class="btn btn-primary"
+            *ngIf="!showAddProduct" (click)="changeAddProductStatus()">+ Add Product</button>
+    <button type="button" class="btn btn-primary"
+            *ngIf="showAddProduct" (click)="changeAddProductStatus()">X</button>
+  </div>
     <app-add-product *ngIf="showAddProduct"></app-add-product>
 </div>
