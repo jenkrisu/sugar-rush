@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <h4>Shopping Cart</h4>
+      <p *ngIf="items.length === 0">No products in cart. Browse <a routerLink="/products">products</a>.</p>
+    </div>
+  </div>
+
+  <!-- If products in shopping cart -->
+  <div *ngIf="items.length > 0" class="row justify-content-center">
+    <div class="col-md-8">
+      <!-- Table head -->
+      <table class="table table-sm table-hover">
+        <thead class="thead-default">
+          <tr>
+            <th>Product</th>
+            <th>Price/Product</th>
+            <th>Amount</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+      
+        <!-- Tably body, products from shopping cart -->
+        <tbody class="">
+          <tr *ngFor="let item of items">
+            <td>{{ item.product.title }}</td>
+            <td>{{ roundPrice(item.product.price)}} &euro;</td>
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" 
+                id="dropdownMenuButtonAmount" data-toggle="dropdown" aria-haspopup="true" 
+                aria-expanded="false">
+                {{ item.amount }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonAmount">
+                  <a *ngFor="let number of stockToArray(item.product.stock)" 
+                  class="dropdown-item"
+                  (click)="changeAmount(item, number)">{{ number }}</a>
+                </div>
+              </div>
+            </td>
+            <td>{{ roundPrice(item.product.price * item.amount) }} &euro;</td>
+            <td>
+              <button type="button" class="btn btn-secondary" 
+              (click)="removeItem(item)">X</button>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ getTotalPrice() }} &euro;</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
