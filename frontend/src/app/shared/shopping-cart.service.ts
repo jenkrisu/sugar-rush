@@ -22,6 +22,56 @@ export class ShoppingCartService {
     return this.shoppingCartTotal;
   }
 
+  // Remove products of type product from shopping cart
+  removeAllFromShoppingCart(product: Product, amount: number) {
+    // Get shopping cart
+    if (sessionStorage.getItem('sbtShoppingCart') !== null) {
+      this.shoppingCart = JSON.parse(sessionStorage.getItem('sbtShoppingCart'));
+    } else {
+      this.shoppingCart = [];
+    }
+
+    // Remove all products from shopping cart
+    for (let i = 0; i < amount; i++) {
+      for (let i = 0; i < this.shoppingCart.length; i++) {
+        if (this.shoppingCart[i].title === product.title) {
+          this.shoppingCart.splice(i, 1);
+          break;
+        }
+      }
+    }
+    
+    // Update shopping cart
+    sessionStorage.setItem('sbtShoppingCart', JSON.stringify(this.shoppingCart));
+    this.shoppingCartTotal.next(this.shoppingCart.length);
+  }
+
+  // Remove one product from shopping cart
+  removeOneFromShoppingCart(product: Product) {
+    // Get shopping cart
+    if (sessionStorage.getItem('sbtShoppingCart') !== null) {
+      this.shoppingCart = JSON.parse(sessionStorage.getItem('sbtShoppingCart'));
+    } else {
+      this.shoppingCart = [];
+    }
+
+    // Find index of first occurrance of item
+    let index = -1;
+    for (let i = 0; i < this.shoppingCart.length; i++) {
+      if (this.shoppingCart[i].title === product.title) {
+        index = i;
+        break;
+      }
+    }
+
+    // If item found, remove it from shopping cart
+    if (index > -1) {
+      this.shoppingCart.splice(index, 1);
+      sessionStorage.setItem('sbtShoppingCart', JSON.stringify(this.shoppingCart));
+      this.shoppingCartTotal.next(this.shoppingCart.length);
+    }
+  }
+
   // Add item to shopping cart, return true if added, false if not
   addToShoppingCart(product: Product) {
     // Initialize shopping cart
@@ -53,7 +103,7 @@ export class ShoppingCartService {
 
       // See how many products in cart
       for (i; i < length; i++) {
-        if (JSON.stringify(this.shoppingCart[i]) === JSON.stringify(product)) {
+        if (this.shoppingCart[i].title === product.title) {
           amount++;
         }
       }
