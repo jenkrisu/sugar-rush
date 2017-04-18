@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
+  showAddProduct: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  changeAddProductStatus() {
+    if (this.showAddProduct) {
+      this.showAddProduct = false;
+    } else {
+      this.showAddProduct = true;
+    }
   }
 
 }

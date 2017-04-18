@@ -2,5 +2,7 @@
   <p>
     admin works!
   </p>
-  <app-add-product></app-add-product>
+    <button *ngIf="!showAddProduct" (click)="changeAddProductStatus()">+ Add Product</button>
+    <button *ngIf="showAddProduct" (click)="changeAddProductStatus()">X</button>
+    <app-add-product *ngIf="showAddProduct"></app-add-product>
 </div>
