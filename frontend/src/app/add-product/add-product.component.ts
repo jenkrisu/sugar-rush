@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-add-product',
@@ -7,13 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProductComponent implements OnInit {
 
+  tmpProduct = {};
+
   constructor() { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-
+    console.log("onSubmit");
+    console.log(this.tmpProduct);
   }
-
 }
