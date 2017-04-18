@@ -36,7 +36,7 @@
 
       <li>
         <label>Image</label>
-        <input type="text" formControlName="image" />
+        <input type="file" #fileInput (change)="fileSelected($event)" formControlName="image"  />
       </li>
     </ul>
     <button type="submit">Submit</button>

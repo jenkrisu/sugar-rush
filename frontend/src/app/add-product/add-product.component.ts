@@ -9,6 +9,7 @@ import { ProductService } from '../shared/product.service';
 })
 export class AddProductComponent implements OnInit {
   form;
+  image;
 
   constructor(private formBuilder: FormBuilder,
               private productService: ProductService) { }
@@ -24,15 +25,18 @@ export class AddProductComponent implements OnInit {
       weight: this.formBuilder.control(''),
       price: this.formBuilder.control(''),
       stock: this.formBuilder.control(''),
-      image: this.formBuilder.control('')
+      image: this.image
     });
   }
 
   onSubmit(product) {
     console.log("onSubmit");
-    console.log(product);
+    product.image = "assets/img/products/" + this.image;
+    this.productService.addProduct(product).subscribe();
+  }
 
-    this.productService.addProduct(product)
-      .subscribe();
+  fileSelected(event) {
+    console.log(event.target.files[0]);
+    this.image = event.target.files[0].name;
   }
 }
