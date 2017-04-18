@@ -12,4 +12,25 @@
       <h4>What's New</h4>
     </div>
   </div>
+
+  <div class="row justify-content-center">
+    <div id="newProductsCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#newProductsCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#newProductsCarousel" data-slide-to="1"></li>
+        <li data-target="#newProductsCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div *ngFor="let product of products; let i = index" 
+        class="carousel-item" [class.active]="i === 0">
+          <div class="carousel-caption">
+            <a [routerLink]="['/products', product.id]"><h5>{{ product.title }}</h5></a>
+          </div>
+          <img class="d-block img-fluid carousel-product-image" 
+          src="{{ product.image }}" alt="product.title">
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

@@ -1,7 +1,3 @@
-.container {
-  margin-top: 100px;
-}
-
 #details {
   padding-top: 3.5%;
   padding-right: 2%;
@@ -14,4 +10,8 @@
 
 #description {
   padding-left: 2%;
+}
+
+#stock, #cart, .ingredients {
+  margin: 10px 0;
 }

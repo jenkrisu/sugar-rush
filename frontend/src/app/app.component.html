@@ -1,6 +1,8 @@
 <!-- Navigation bar -->
 <nav class="navbar fixed-top navbar-toggleable-md navbar-light">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" 
+  data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" 
+  aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div id="nav-container" class="container">
@@ -8,18 +10,19 @@
     <!-- Collapsing links -->
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link"
+          routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             What's New
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link" routerLink="/products" routerLinkActive="active">
             Our Products
           </a>
         </li>
       </ul>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" data-toggle="collapse" data-target=".navbar-collapse.show">
         <li class="nav-item">
           <a class="nav-link" routerLink="/shoppingcart" routerLinkActive="active">
             Shopping Cart ({{ shoppingCartTotal }})
@@ -30,10 +33,7 @@
   </div>
 </nav>
 
-
-
 <!-- Content -->
 <router-outlet></router-outlet>
 
-<!-- Footer -->
-<!-- TODO -->
+<footer></footer>

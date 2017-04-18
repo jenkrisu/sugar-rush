@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container clear-navbar">
   <div class="row justify-content-center">
     <div class="col-md-8 text-center">
       <h4>Shopping Cart</h4>
@@ -10,11 +10,11 @@
   <div *ngIf="items.length > 0" class="row justify-content-center">
     <div class="col-md-8">
       <!-- Table head -->
-      <table class="table table-sm table-hover">
+      <table class="table table-sm">
         <thead class="thead-default">
           <tr>
             <th>Product</th>
-            <th>Price/Product</th>
+            <th>Price</th>
             <th>Amount</th>
             <th>Total</th>
             <th></th>
@@ -24,7 +24,7 @@
         <!-- Tably body, products from shopping cart -->
         <tbody class="">
           <tr *ngFor="let item of items">
-            <td>{{ item.product.title }}</td>
+            <td><a [routerLink]="['/products', item.product.id]">{{ item.product.title }}</a></td>
             <td>{{ roundPrice(item.product.price)}} &euro;</td>
             <td>
               <div class="dropdown">

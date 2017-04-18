@@ -14,13 +14,13 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container clear-navbar">
 
   <div *ngIf="product">
     <div id="header-and-img" class="row">
       <div class="col-xs-12 col-sm-6 col-md-8">
         <p class="h2">{{ product.title }}</p>
-        <img src="{{product.image}}" class="rounded img-fluid" />
+        <img src="{{product.image}}" class="rounded img-fluid product-image" />
       </div>
       <div id="details" class="col-xs-6 col-md-4">
         <p id="price">{{ product.price }} €</p>
@@ -31,10 +31,9 @@
                 btnCheckboxTrue="1" btnCheckboxFalse="0"
                 (click)="addToCart(product)"
                 data-toggle="modal" data-target="#productDetailModal">
-          Add To Cart
+          Add to Cart
         </button>
-
-        <div>
+        <div class="ingredients">
           <p class="h4">Ingredients</p>
           {{ product.ingredients }}
         </div>
