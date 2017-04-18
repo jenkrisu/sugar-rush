@@ -13,22 +13,16 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      title: this.formBuilder.control(''),
+      title: this.formBuilder.control('' /*, Validators.compose([
+        Validators.required,
+        Validators.pattern('[\\w\\-\\s\\/]+')
+      ]) */),
       desc: this.formBuilder.control(''),
       ingredients: this.formBuilder.control(''),
       weight: this.formBuilder.control(''),
       price: this.formBuilder.control(''),
       stock: this.formBuilder.control(''),
-      image: this.formBuilder.control(''),
-
-
-      /*,
-      name: this.formBuilder.control('', Validators.compose([
-        Validators.required,
-        Validators.pattern('[\\w\\-\\s\\/]+')
-      ])),
-      category: this.formBuilder.control(''),
-      year: this.formBuilder.control(''),*/
+      image: this.formBuilder.control('')
     });
   }
 
