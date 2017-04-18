@@ -11,7 +11,7 @@
 
       <li>
         <label>Description</label>
-        <input type="text" formControlName="desc" />
+        <input type="text" formControlName="description" />
       </li>
 
       <li>
@@ -31,12 +31,12 @@
 
       <li>
         <label>Stock</label>
-        <input type="text" formControlName="stock" />
+        <input type="text" formControlName="stock" pattern="^[0-9]*$" title="Test"/>
       </li>
 
       <li>
         <label>Image</label>
-        <input type="file" #fileInput (change)="fileSelected($event)" formControlName="image"  />
+        <input type="text" formControlName="image"  />
       </li>
     </ul>
     <button type="submit">Submit</button>

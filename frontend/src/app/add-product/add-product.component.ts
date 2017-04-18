@@ -9,7 +9,6 @@ import { ProductService } from '../shared/product.service';
 })
 export class AddProductComponent implements OnInit {
   form;
-  image;
 
   constructor(private formBuilder: FormBuilder,
               private productService: ProductService) { }
@@ -20,23 +19,20 @@ export class AddProductComponent implements OnInit {
         Validators.required,
         Validators.pattern('[\\w\\-\\s\\/]+')
       ]) */),
-      desc: this.formBuilder.control(''),
+      description: this.formBuilder.control(''),
       ingredients: this.formBuilder.control(''),
       weight: this.formBuilder.control(''),
       price: this.formBuilder.control(''),
-      stock: this.formBuilder.control(''),
-      image: this.image
+      stock: this.formBuilder.control('' /*, Validators.compose([
+        Validators.required,
+        Validators.pattern('^[0-9]*$')
+      ])*/),
+      image: this.formBuilder.control('')
     });
   }
 
   onSubmit(product) {
     console.log("onSubmit");
-    product.image = "assets/img/products/" + this.image;
     this.productService.addProduct(product).subscribe();
-  }
-
-  fileSelected(event) {
-    console.log(event.target.files[0]);
-    this.image = event.target.files[0].name;
   }
 }
