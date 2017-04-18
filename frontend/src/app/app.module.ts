@@ -14,6 +14,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 import { ProductService } from './shared/product.service';
 import { ShoppingCartService } from './shared/shopping-cart.service';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ShoppingCartService } from './shared/shopping-cart.service';
     ProductListComponent,
     NewProductsComponent,
     ProductDetailComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
