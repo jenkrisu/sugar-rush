@@ -16,7 +16,7 @@
 
 <div class="container">
   <h2>Products</h2>
-  <button *ngIf="isAdmin">+ Add product</button>
+  <button *ngIf="isAdmin" [routerLink]="['/add-product']">+ Add product</button>
   <div class="row align-items-center justify-content-center">
     <app-product *ngFor="let p of products" [product]="p"
     (onAddedToCart)="onAddedToCart($event)">
