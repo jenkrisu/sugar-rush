@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../models/product';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-product',
@@ -7,16 +7,39 @@ import { Product } from '../models/product';
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit {
+  form;
 
-  tmpProduct = {};
-
-  constructor() { }
+  constructor(private formBuilder: FormBuilder,) { }
 
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      title: this.formBuilder.control(''),
+      desc: this.formBuilder.control(''),
+      ingredients: this.formBuilder.control(''),
+      weight: this.formBuilder.control(''),
+      price: this.formBuilder.control(''),
+      stock: this.formBuilder.control(''),
+      image: this.formBuilder.control(''),
+
+
+      /*,
+      name: this.formBuilder.control('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[\\w\\-\\s\\/]+')
+      ])),
+      category: this.formBuilder.control(''),
+      year: this.formBuilder.control(''),*/
+    });
   }
 
-  onSubmit() {
+  onSubmit(product) {
     console.log("onSubmit");
-    console.log(this.tmpProduct);
+    console.log(product);
+
+    /* let product: Product = new Product(this.tmpProduct.title, this.tmpProduct.desc,
+    this.tmpProduct.ingredients, this.tmpProduct.weight, this.tmpProduct.price,
+    this.tmpProduct.stock, this.tmpProduct.image); */
+
+
   }
 }
