@@ -7,14 +7,14 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
-import { AddProductComponent } from './add-product/add-product.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
     { path: '', component: NewProductsComponent },
     { path: 'products', component: ProductListComponent },
     { path: 'products/:id', component: ProductDetailComponent },
     { path: 'checkout', component: CheckoutComponent },
-    { path: 'add-product', component: AddProductComponent },
+    { path: 'admin', component: AdminComponent },
     { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
