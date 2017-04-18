@@ -10,8 +10,9 @@ import { Router } from '@angular/router';
 export class ProductListComponent implements OnInit {
 
   modalMessage: string;
-  
+
   products;
+  isAdmin: boolean = true;
 
   constructor(private productService: ProductService,
               private router: Router) {
