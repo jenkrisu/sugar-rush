@@ -26,7 +26,6 @@ export class NewProductsComponent implements OnInit {
         if (products.length > 3) {
           this.products = products.slice(products.length - 3);
         }
-        console.log(products)
       },
           err => {
             console.log(err);
