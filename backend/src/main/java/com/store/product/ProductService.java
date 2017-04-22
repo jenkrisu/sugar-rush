@@ -24,7 +24,7 @@ public class ProductService {
                 "Blend of the finest chocolate with delicate almond pieces, cashew, hazelnut, and walnut.",
                 "Sugar, cocoa mass, almond, cashew, hazelnut, walnut, cocoa butter, butterfat.",
                 100, 15.99, 5,
-                "https://dl.dropboxusercontent.com/s/egeec0vzyv5qw83/dark-chocolate-nut.jpg?"));
+                "https://dl.dropboxusercontent.com/s/egeec0vzyv5qw83/dark-chocolate-nut.jpg"));
 
         productRepository.save(new Product("Dark Fruit Chocolate",
                 "Tangy orange, pineapple, and strawberry notes mix with deep intense cocoa flavours" +
@@ -37,7 +37,7 @@ public class ProductService {
                 "Brilliantly blended ultra-light chocolate with delicious marshmallow pieces.",
                 "Sugar, cocoa mass, vegetable fat, cocoa butter.",
                 150, 19.99, 5,
-                "https://dl.dropboxusercontent.com/s/9bjndzqgifwfbil/dark-chocolate-marshmallow.jpg?"));
+                "https://dl.dropboxusercontent.com/s/9bjndzqgifwfbil/dark-chocolate-marshmallow.jpg"));
 
         productRepository.save(new Product("Cappuccino Truffle",
                 "Espresso and creamy notes in dark chocolate ganache. ",
