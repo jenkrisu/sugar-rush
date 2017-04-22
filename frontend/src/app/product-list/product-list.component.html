@@ -1,3 +1,60 @@
+<div class="container clear-navbar">
+  <div class="row align-items-center justify-content-center">
+      <h4>Shop Chocolate</h4>
+  </div>
+
+  <!-- Nav pills -->
+  <div class="row justify-content-center">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a (click)="showNew($event)"
+        [class.active]="activeId === 1"
+        class="nav-link" href="#" role="button">
+          New <span class="additional-text">Arrivals</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a (click)="showAll($event)"
+        [class.active]="activeId === 2"
+        class="nav-link" href="#">
+          All <span class="additional-text">Products</span>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+        (click)="activeId = 3"
+        [class.active]="activeId === 3"
+        href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        Chocolates
+        </a>
+        <div class="dropdown-menu">
+          <a (click)="showBars($event)"
+          class="dropdown-item" href="#">Chocolate Bars</a>
+          <a (click)="showTruffles($event)"
+          class="dropdown-item" href="#">Truffle Delights</a>
+          <a (click)="showRounds($event)"
+          class="dropdown-item" href="#">Chocolate Rounds</a>
+        </div>
+      </li>
+      <li class="nav-item">
+          <a (click)="search($event)"
+          [class.active]="activeId === 4"
+          class="nav-link" href="#">Search</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Show products -->
+<div class="container">
+  <div class="row align-items-center justify-content-center">
+    <app-product *ngFor="let p of shownProducts" [product]="p"
+    (onAddedToCart)="onAddedToCart($event)">
+    </app-product>
+  </div>
+</div>
+
+<!-- Shopping cart modal -->
 <div class="modal fade" id="produtListModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -11,16 +68,5 @@
         <p>{{ modalMessage }}</p>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="container clear-navbar">
-  <div class="row align-items-center justify-content-center">
-      <h4>Our Products</h4>
-  </div>
-  <div class="row align-items-center justify-content-center">
-    <app-product *ngFor="let p of products" [product]="p"
-    (onAddedToCart)="onAddedToCart($event)">
-    </app-product>
   </div>
 </div>

@@ -103,16 +103,6 @@ $font-family-sans-serif: "Open Sans", -apple-system, system-ui, BlinkMacSystemFo
     cursor: pointer;
 }
 
-@include media-breakpoint-down(md) {
-    #nav-container {
-        margin-left: 0px;
-    }
-
-    .navbar-brand {
-        width: 200px;
-    }
-}
-
 .clear-navbar {
     padding-top: 100px;
 }
@@ -123,4 +113,28 @@ footer {
 
 h4 {
     padding-bottom: 20px;
+}
+
+
+
+/* Display additional text on products nav pills on larger displays */
+.additional-text {
+    display: none;
+}
+
+@include media-breakpoint-up(sm) { 
+    .additional-text {
+        display: inline-block;
+    }
+}
+
+/* Fixes for bug in sticky navigation menu when display is small */
+@include media-breakpoint-down(md) {
+    #nav-container {
+        margin-left: 0px;
+    }
+
+    .navbar-brand {
+        width: 200px;
+    }
 }
