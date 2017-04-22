@@ -13,7 +13,7 @@ export class ShoppingCartService {
   private cart = new BehaviorSubject<Cart>(new Cart([], 0));
 
   constructor() {
-    this.getCart();
+    this.getCartFromStorage();
   }
 
   // Return BehaviourSubject for Subscription
@@ -21,9 +21,8 @@ export class ShoppingCartService {
     return this.cart;
   }
 
-  // Remove products from shopping cart
-  // Product: Product type to remove
-  // Amount: Amount to remove
+  // Remove items from shopping cart
+  // C: CartItem to remove
   removeAll(c: CartItem) {
     let cart = this.cart.getValue();
 
@@ -40,7 +39,7 @@ export class ShoppingCartService {
   }
 
   // Remove one product from shopping cart
-  // Product: Product type to remove
+  // P: Product type to remove
   removeOne(p: Product) {
     let cart = this.cart.getValue();
 
@@ -76,6 +75,7 @@ export class ShoppingCartService {
     // Amount smaller than stock: can add
     if (productAmount === 0) {
       cart.items.push(new CartItem(p, 1));
+      this.sortItems(cart.items);
     } else {
       const index = cart.items.indexOf(cartItem);
       if (index > -1) {
@@ -92,21 +92,40 @@ export class ShoppingCartService {
   }
 
   // Gets cart from session storage and sets it to Subscription
-  getCart() {
-    if (localStorage.getItem('sweetCart') !== null) {
-      const cartString = localStorage.getItem('sweetCart');
+  getCartFromStorage() {
+    if (sessionStorage.getItem('sweetCart') !== null) {
+      const cartString = sessionStorage.getItem('sweetCart');
       const cartObject = JSON.parse(cartString);
       this.cart.next(cartObject);
     }
   }
   
   // Saves cart to session storage and Subscription
-  saveCart(c: Cart) { {
+  saveCart(c: Cart) { 
     this.cart.next(c);
     const cart = JSON.stringify(c);
-    localStorage.setItem('sweetCart', cart);
+    sessionStorage.setItem('sweetCart', cart);
   }
 
+  // Sort items by product title
+  sortItems(items: CartItem[]) {
+    if (items.length > 1) {
+
+      items.sort(function(a, b) {
+        let productA = a.product.title.toUpperCase();
+        let productB = b.product.title.toUpperCase();
+        
+        if (productA < productB) {
+          return -1;
+        }
+
+        if (productA > productB) {
+          return 1;
+        }
+
+        return 0;
+      });
+    }
   }
 
 }
