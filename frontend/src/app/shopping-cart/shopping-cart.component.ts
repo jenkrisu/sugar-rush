@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
+import { Cart } from '../models/cart';
 import { CartItem } from '../models/cart-item';
 import { Product } from '../models/product';
 
@@ -15,82 +17,32 @@ import { ProductService } from '../shared/product.service';
 export class ShoppingCartComponent implements OnInit {
 
   private products: Product[];
-  public items: CartItem[];
+
+  private subscription: Subscription;
+  public cart: Cart;
 
   constructor(private productService: ProductService,
     private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
-    this.products = this.productsFromShoppingCart();
-    this.items = this.productsToCartItems(); 
+    this.cart = new Cart([], 0);
+    this.subscription = this.shoppingCartService
+    .getShoppingCart()
+    .subscribe(item => this.cart = item);
   }
 
-  // Parse products to CartItem objects
-  productsToCartItems() {
-    this.items = [];
-
-    for (let i = 0; i < this.products.length; i++) {
-      let index = this.containsProduct(this.products[i]);
-      if (index > -1) {
-        this.items[index].amount++;
-      } else {
-        this.items.push(new CartItem(this.products[i], 1));
-      }
-    }
-
-    return this.items;
-  }
-
-  // Return index of product, -1 if not found
-  containsProduct(product: Product) {
-    let i = 0;
-    
-    for (i; i < this.items.length; i++) {
-      if (this.items[i].product.title === product.title) {
-        return i;
-      }  
-    }
-
-    return -1;
-  }
-
-  // Fetch items from shopping cart
-  productsFromShoppingCart() {
-    this.products = [];
-    
-    // Fetch from session storage
-    if (sessionStorage.getItem('sbtShoppingCart') !== null) {
-      this.products = JSON.parse(sessionStorage.getItem('sbtShoppingCart'));
-    }
-
-    // Sort products by title
-    if (this.products.length > 1) {
-      this.products.sort(function(a, b) {
-        let productA = a.title.toUpperCase();
-        let productB = b.title.toUpperCase();
-        if (productA < productB) {
-          return -1;
-        }
-        if (productA > productB) {
-          return 1;
-        }
-        return 0;
-      })
-    }
-
-    return this.products;
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   // Get total price of products
   getTotalPrice() {
     let total = 0;
-    
-    for (let i = 0; i < this.items.length; i++) {
-      let pricePerOne= this.items[i].product.price;
-      let pricePerAll = this.items[i].amount * pricePerOne;
+    for (let i = 0; i < this.cart.items.length; i++) {
+      let pricePerOne= this.cart.items[i].product.price;
+      let pricePerAll = this.cart.items[i].amount * pricePerOne;
       total += pricePerAll;
     }
-
     return this.roundPrice(total);
   }
 
@@ -118,35 +70,27 @@ export class ShoppingCartComponent implements OnInit {
     return array;
   }
 
-  // Add or remove items to/from shopping cart
+  // Update amount of items in shopping cart
   changeAmount(item: CartItem, amount: number) {
-    // If items added
+    // Add items
     if (item.amount < amount) {
       let add = amount - item.amount;
       for (let i = 0; i < add; i++) {
-        this.shoppingCartService.addToShoppingCart(item.product);
+        this.shoppingCartService.addOne(item.product);
       }
-    // If items removed
+
+    // Remove items
     } else if (item.amount > amount) {
       let remove = item.amount - amount;
-      console.log(remove);
       for (let i = 0; i < remove; i++) {
-        this.shoppingCartService.removeOneFromShoppingCart(item.product);
+        this.shoppingCartService.removeOne(item.product);
       }
     }
-
-    // Refresh content from shopping cart
-    this.products = this.productsFromShoppingCart();
-    this.items = this.productsToCartItems(); 
   }
 
   // Remove all items of this type from shopping cart
   removeItem(item: CartItem) {
-    this.shoppingCartService.removeAllFromShoppingCart(item.product, item.amount);
-
-    // Refresh content from shopping cart
-    this.products = this.productsFromShoppingCart();
-    this.items = this.productsToCartItems(); 
+    this.shoppingCartService.removeAll(item);
   }
 
 }

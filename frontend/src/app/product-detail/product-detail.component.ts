@@ -34,7 +34,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    let added = this.shoppingCartService.addToShoppingCart(product);
+    let added = this.shoppingCartService.addOne(product);
 
     if (!added) {
       this.modalMessage = product.title + ' out of stock';

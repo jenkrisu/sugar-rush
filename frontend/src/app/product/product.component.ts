@@ -23,7 +23,7 @@ export class ProductComponent implements OnInit {
 
   addToCart(product: Product) {
     let message = '';
-    let added = this.shoppingCartService.addToShoppingCart(product);
+    let added = this.shoppingCartService.addOne(product);
 
     if (!added) {
       message = product.title + ' out of stock';
