@@ -13,12 +13,7 @@ export class ShoppingCartService {
   private cart = new BehaviorSubject<Cart>(new Cart([], 0));
 
   constructor() {
-    if (sessionStorage.getItem('sweetCart') !== null) {
-      console.log('From storage: ' + sessionStorage.getItem('sweetCart'));
-      const cartObject = JSON.parse(sessionStorage.getItem('sweetCart'));
-      this.cart.next(cartObject);
-      console.log('Cart to object: ' + cartObject)
-    }
+    this.getCart();
   }
 
   // Return BehaviourSubject for Subscription
@@ -38,7 +33,7 @@ export class ShoppingCartService {
       if (index > -1) {
         cart.items.splice(index, 1);
         cart.total -= c.amount;
-        this.cart.next(cart);
+        this.saveCart(cart);
       }
     }
 
@@ -56,7 +51,7 @@ export class ShoppingCartService {
         cartItem.amount--;
         cart.items[index] = cartItem;
         cart.total--;
-        this.cart.next(cart);
+        this.saveCart(cart);
       }
     }
   }
@@ -92,8 +87,26 @@ export class ShoppingCartService {
     }
     
     cart.total++;
-    this.cart.next(cart);
+    this.saveCart(cart);
     return true;
+  }
+
+  // Gets cart from session storage and sets it to Subscription
+  getCart() {
+    if (localStorage.getItem('sweetCart') !== null) {
+      const cartString = localStorage.getItem('sweetCart');
+      const cartObject = JSON.parse(cartString);
+      this.cart.next(cartObject);
+    }
+  }
+  
+  // Saves cart to session storage and Subscription
+  saveCart(c: Cart) { {
+    this.cart.next(c);
+    const cart = JSON.stringify(c);
+    localStorage.setItem('sweetCart', cart);
+  }
+
   }
 
 }

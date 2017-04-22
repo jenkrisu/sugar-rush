@@ -19,6 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.shoppingCart = new Cart([], 0);
     this.subscription = this.shoppingCartService
     .getShoppingCart()
     .subscribe(item => this.shoppingCart = item);
