@@ -127,7 +127,7 @@ public class ProductService {
                 "https://dl.dropboxusercontent.com/s/oamqggj0sg8ljrb/banana-peanut.gif"));
 
         productRepository.save(new Product("Milk Raspberry Chocolate", "round",
-                "Milk chocolate topped with freeze dried raspberries. 5 Chocolate Rounds per box",
+                "Milk chocolate topped with freeze dried raspberries. 5 Chocolate Rounds per box.",
                 "Milk, cream, cocoa, raspberries, sugar.",
                 85, 29.99, 30,
                 "https://dl.dropboxusercontent.com/s/3cm9sf0yd6lqkr4/milk-raspberry.gif"));

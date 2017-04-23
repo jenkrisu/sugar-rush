@@ -11,9 +11,15 @@ export class ProductListComponent implements OnInit {
 
   public activeId: number;
   public modalMessage: string;
+  public noResults: boolean;
+  public searchWord: string;
+  public searchHint: string;
   
   // Currently shown products
   public shownProducts;
+
+  // Products shown if in search tab
+  public searchResults;
 
   // All products
   products;
@@ -22,6 +28,8 @@ export class ProductListComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
+    this.searchWord = '';
+    this.searchHint = 'Search from title and ingredients...';
     this.activeId = 1;
     this.getProducts();
   }
@@ -70,26 +78,56 @@ export class ProductListComponent implements OnInit {
   // Show chocolate bars
   showBars(event:any) {
     event.preventDefault();
+    this.activeId = 3;
     this.shownProducts = this.products.filter(item => item.category === 'bar');
   }
 
   // Show truffle delights
   showTruffles(event:any) {
     event.preventDefault();
+    this.activeId = 3;
     this.shownProducts = this.products.filter(item => item.category === 'truffle');
   }
 
   // Show chocolate rounds
   showRounds(event:any) {
     event.preventDefault();
+    this.activeId = 3;
     this.shownProducts = this.products.filter(item => item.category === 'round');
   }
 
   // Show search
-  search(event: any) {
+  searchProducts(event: any) {
     event.preventDefault();
     this.activeId = 4;
     this.shownProducts = [];
+  }
+  
+  // Searches products
+  onKeyUp() {
+    this.noResults = false;
+
+    if (this.searchWord.length > 0 && this.searchWord !== ' ') {
+
+      // Product search searches title and description
+      let results = this.products.filter(function(item) {
+      // Includes is case sensitive
+      const title = item.title.toLowerCase();
+      const ingr = item.ingredients.toLowerCase();
+      const search = this.toLowerCase();
+
+      return title.includes(search) || ingr.includes(search);
+      }.bind(this.searchWord));
+
+      this.searchResults = results;
+    
+      if (results.length === 0) {
+        this.noResults = true;
+      }
+
+    } else {
+      this.searchResults = [];
+    }
   }
 
 }
