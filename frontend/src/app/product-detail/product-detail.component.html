@@ -10,10 +10,7 @@
       </div>
       <div class="modal-body">
         <p>{{ modalMessage }}</p>
-        <button *ngIf="modalTitle === 'Item Added'"
-        data-dismiss="modal"
-        routerLink="/shoppingcart"
-        type="button" class="btn btn-secondary">
+        <button *ngIf="modalTitle === 'Item Added'" data-dismiss="modal" routerLink="/shoppingcart" type="button" class="btn btn-secondary">
          Show Shopping Cart
         </button>
       </div>
@@ -33,11 +30,7 @@
         <p id="price">{{ product.price }} €</p>
         <p id="weight">{{ product.weight }} g</p>
         <pre id="stock" class="card card-block card-header">Stock: {{ product.stock }}</pre>
-        <button id="cart" type="button" class="btn btn-primary"
-                btnCheckbox
-                btnCheckboxTrue="1" btnCheckboxFalse="0"
-                (click)="addToCart(product)"
-                data-toggle="modal" data-target="#productDetailModal">
+        <button id="cart" type="button" class="btn btn-primary" btnCheckbox btnCheckboxTrue="1" btnCheckboxFalse="0" (click)="addToCart(product)" data-toggle="modal" data-target="#productDetailModal">
           Add to Cart
         </button>
         <div class="ingredients">

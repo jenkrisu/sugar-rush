@@ -23,8 +23,8 @@ export class ProductListComponent implements OnInit {
   // Currently shown products
   public shownProducts;
 
-  // Products shown if in search tab
-  public searchResults;
+  // Saves shown products before search
+  private prevProducts;
 
   // All products
   products;
@@ -33,13 +33,17 @@ export class ProductListComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    this.searchWord = '';
+    this.setSearchHint();
     this.searchTitle = true;
     this.searchDesc = true;
     this.searchIngredients = true;
-    this.searchHint = 'Search chocolates...';
     this.activeId = 1;
     this.getProducts();
+  }
+
+  setSearchHint() {
+    this.searchWord = '';
+    this.searchHint = 'Search chocolates...';
   }
 
   getProducts() {
@@ -87,35 +91,36 @@ export class ProductListComponent implements OnInit {
   showAll(event: any) {
     event.preventDefault();
     this.activeId = 2;
+    this.setSearchHint();
     this.shownProducts = this.products;
+    this.prevProducts = this.shownProducts;
   }
 
   // Show chocolate bars
   showBars(event:any) {
     event.preventDefault();
     this.activeId = 3;
+    this.setSearchHint();
     this.shownProducts = this.products.filter(item => item.categories.includes('bar'));
+    this.prevProducts = this.shownProducts;
   }
 
   // Show truffle delights
   showTruffles(event:any) {
     event.preventDefault();
     this.activeId = 3;
+    this.setSearchHint();
     this.shownProducts = this.products.filter(item => item.categories.includes('truffle'));
+    this.prevProducts = this.shownProducts;
   }
 
   // Show chocolate rounds
   showRounds(event:any) {
     event.preventDefault();
     this.activeId = 3;
+    this.setSearchHint();
     this.shownProducts = this.products.filter(item => item.categories.includes('round'));
-  }
-
-  // Show search
-  searchProducts(event: any) {
-    event.preventDefault();
-    this.activeId = 4;
-    this.shownProducts = [];
+    this.prevProducts = this.shownProducts;
   }
   
   // Searches products
@@ -125,7 +130,7 @@ export class ProductListComponent implements OnInit {
     if (this.searchWord.length > 0 && this.searchWord !== ' ') {
 
       // Product search searches title and description
-      let results = this.products.filter(function(item) {
+      let results = this.shownProducts.filter(function(item) {
       // Includes is case sensitive
       const title = item.title.toLowerCase();
       const desc = item.description.toLowerCase();
@@ -163,15 +168,19 @@ export class ProductListComponent implements OnInit {
       return false;
       }.bind(this));
 
-      this.searchResults = results;
+      this.shownProducts = results;
     
       if (results.length === 0) {
         this.noResults = true;
       }
-
     } else {
-      this.searchResults = [];
+      this.shownProducts = this.prevProducts;
     }
+  }
+
+  // Return whether any search options are selected
+  searchOptions() {
+    return this.searchTitle || this.searchDesc || this.searchIngredients;
   }
 
 }
