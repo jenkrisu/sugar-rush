@@ -4,11 +4,11 @@ import { ShoppingCartService } from '../shared/shopping-cart.service';
 import { Product } from '../models/product';
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-product-card',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductCardComponent implements OnInit {
 
   @Input()
   product;

@@ -6,9 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product-card/product.component';
+import { ProductCardComponent } from './product-card/product.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { NewProductsComponent } from './home-page/home-page.component';
+import { HomePageComponent } from './home-page/home-page.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './shopping-cart/contact-information.component';
@@ -19,9 +19,9 @@ import { ShoppingCartService } from './shared/shopping-cart.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
+    ProductCardComponent,
     ProductListComponent,
-    NewProductsComponent,
+    HomePageComponent,
     ProductDetailComponent,
     ShoppingCartComponent,
     CheckoutComponent
