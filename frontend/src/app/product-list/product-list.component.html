@@ -53,6 +53,7 @@
           <input type="checkbox"
           [(ngModel)]="searchTitle"
           name="searchTitle"
+          (change)="onKeyUp()"
           class="form-check-input">
           Title
         </label>
@@ -62,6 +63,7 @@
            <input type="checkbox"
            [(ngModel)]="searchDesc"
            name="searchDesc"
+           (change)="onKeyUp()"
            class="form-check-input">
            Description
         </label>
@@ -71,6 +73,7 @@
           <input type="checkbox"
            [(ngModel)]="searchIngredients"
            name="searchIngredients"
+           (change)="onKeyUp()"
            class="form-check-input">
            Ingredients
         </label>
