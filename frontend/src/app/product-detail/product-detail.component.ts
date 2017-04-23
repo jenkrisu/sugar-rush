@@ -13,6 +13,7 @@ import { Product } from '../models/product';
 })
 export class ProductDetailComponent implements OnInit {
 
+  modalTitle: string;
   modalMessage: string;
   product;
 
@@ -38,8 +39,10 @@ export class ProductDetailComponent implements OnInit {
 
     if (!added) {
       this.modalMessage = product.title + ' out of stock';
+      this.modalTitle = 'Out of Stock';
     } else {
       this.modalMessage = product.title + ' added to cart';
+      this.modalTitle = 'Item Added';
     }
   }
 

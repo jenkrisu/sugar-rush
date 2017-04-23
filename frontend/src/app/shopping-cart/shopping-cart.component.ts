@@ -60,10 +60,10 @@ export class ShoppingCartComponent implements OnInit {
     } else {
       length = stock;
     }
-
+    
     let array = [length];
 
-    for (let i = 0; i < stock; i++) {
+    for (let i = 0; i < length; i++) {
       array[i] = i+1;
     }
 
