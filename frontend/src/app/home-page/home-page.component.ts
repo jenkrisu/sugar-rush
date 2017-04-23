@@ -4,11 +4,11 @@ import { ProductService } from '../shared/product.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-new-products',
-  templateUrl: './new-products.component.html',
-  styleUrls: ['./new-products.component.scss']
+  selector: 'app-home-page',
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.scss']
 })
-export class NewProductsComponent implements OnInit {
+export class HomePageComponent implements OnInit {
 
   products;
 
