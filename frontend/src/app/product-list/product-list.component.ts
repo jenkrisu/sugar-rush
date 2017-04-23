@@ -38,7 +38,7 @@ export class ProductListComponent implements OnInit {
     this.productService.getProducts()
       .subscribe(products => {
         // Newest first in array
-        this.products = products.reverse();
+        this.products = products;
 
         // Show only new products
         this.newProducts();
@@ -56,8 +56,10 @@ export class ProductListComponent implements OnInit {
 
   // Get third most new products
   newProducts() {
+    this.shownProducts = this.products;
+
     if (this.products && this.products.length > 3) {
-      this.shownProducts = this.products.slice(0, 3);
+      this.shownProducts = this.products.slice(this.products.length - 3);
     }
   }
 
