@@ -14,6 +14,10 @@ export class ProductListComponent implements OnInit {
   public noResults: boolean;
   public searchWord: string;
   public searchHint: string;
+
+  public searchTitle: boolean;
+  public searchDesc: boolean;
+  public searchIngredients: boolean;
   
   // Currently shown products
   public shownProducts;
@@ -29,7 +33,10 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.searchWord = '';
-    this.searchHint = 'Search from title and ingredients...';
+    this.searchTitle = true;
+    this.searchDesc = true;
+    this.searchIngredients = true;
+    this.searchHint = 'Search chocolates...';
     this.activeId = 1;
     this.getProducts();
   }
@@ -115,11 +122,40 @@ export class ProductListComponent implements OnInit {
       let results = this.products.filter(function(item) {
       // Includes is case sensitive
       const title = item.title.toLowerCase();
+      const desc = item.description.toLowerCase();
       const ingr = item.ingredients.toLowerCase();
-      const search = this.toLowerCase();
+      const search = this.searchWord.toLowerCase();
 
-      return title.includes(search) || ingr.includes(search);
-      }.bind(this.searchWord));
+      if (this.searchTitle && this.searchDesc && this.searchIngredients) {
+        return title.includes(search) || desc.includes(search) || ingr.includes(search);
+      }
+
+      if(this.searchTitle && this.searchDesc) {
+        return title.includes(search) || desc.includes(search);
+      }
+
+      if (this.searchTitle && this.searchIngredients) {
+        return title.includes(search) || ingr.includes(search);
+      }
+
+      if (this.searchDesc && this.searchIngredients) {
+        return desc.includes(search) || ingr.includes(search);
+      }
+
+      if (this.searchTitle) {
+        return title.includes(search);
+      }
+
+      if (this.searchDesc) {
+        return desc.includes(search);
+      }
+
+      if (this.searchIngredients) {
+        return ingr.includes(search)
+      }
+      
+      return false;
+      }.bind(this));
 
       this.searchResults = results;
     
