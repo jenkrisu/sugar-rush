@@ -57,4 +57,7 @@
       </table>
     </div>
   </div>
+  <div *ngIf="cart.items.length > 0" class="row justify-content-center">
+    <button type="button" class="btn btn-primary">Checkout</button>
+  </div>
 </div>

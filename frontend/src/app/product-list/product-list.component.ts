@@ -11,6 +11,7 @@ export class ProductListComponent implements OnInit {
 
   public activeId: number;
   public modalMessage: string;
+  public modalTitle: string;
   public noResults: boolean;
   public searchWord: string;
   public searchHint: string;
@@ -59,6 +60,11 @@ export class ProductListComponent implements OnInit {
   // Change modal message
   onAddedToCart(message: string) {
     this.modalMessage = message;
+    if (this.modalMessage.includes('added')) {
+      this.modalTitle = 'Item Added';
+    } else {
+      this.modalTitle = 'Out of Stock';
+    }
   }
 
   // Get third most new products
