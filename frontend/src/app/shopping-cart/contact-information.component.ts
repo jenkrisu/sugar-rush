@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss', '../shopping-cart/shopping-cart.component.scss']
+  templateUrl: './contact-information.component.html',
+  styleUrls: ['./contact-information.component.scss', './shopping-cart.component.scss']
 })
 export class CheckoutComponent implements OnInit {
 
