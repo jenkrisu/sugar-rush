@@ -174,4 +174,9 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+  // Return whether any search options are selected
+  searchOptions() {
+    return this.searchTitle || this.searchDesc || this.searchIngredients;
+  }
+
 }

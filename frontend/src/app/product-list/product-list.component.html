@@ -86,8 +86,12 @@
       </div>
     </form>
   </div>
-  <div *ngIf="noResults" class="row align-items-center justify-content-center">
-    <p id="no-results">No results.</p>
+  <div *ngIf="!searchTitle && !searchDesc && !searchIngredients"
+  class="row align-items-center justify-content-center">
+    <p>Select search options to search.</p>
+  </div>
+  <div *ngIf="noResults && searchOptions()" class="row align-items-center justify-content-center">
+    <p>No results.</p>
   </div>
   <div class="row align-items-center justify-content-center">
     <app-product *ngFor="let p of searchResults" [product]="p"
