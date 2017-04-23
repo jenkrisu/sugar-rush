@@ -88,21 +88,21 @@ export class ProductListComponent implements OnInit {
   showBars(event:any) {
     event.preventDefault();
     this.activeId = 3;
-    this.shownProducts = this.products.filter(item => item.category === 'bar');
+    this.shownProducts = this.products.filter(item => item.categories.includes('bar'));
   }
 
   // Show truffle delights
   showTruffles(event:any) {
     event.preventDefault();
     this.activeId = 3;
-    this.shownProducts = this.products.filter(item => item.category === 'truffle');
+    this.shownProducts = this.products.filter(item => item.categories.includes('truffle'));
   }
 
   // Show chocolate rounds
   showRounds(event:any) {
     event.preventDefault();
     this.activeId = 3;
-    this.shownProducts = this.products.filter(item => item.category === 'round');
+    this.shownProducts = this.products.filter(item => item.categories.includes('round'));
   }
 
   // Show search

@@ -27,9 +27,9 @@ public class Product {
     private String title;
 
     /**
-     * Category (bar, truffle, round)
+     * Categories (bar, truffle, round)
      */
-    private String category;
+    private String categories;
 
     /**
      * Description of product.
@@ -63,10 +63,10 @@ public class Product {
 
     public Product() {}
 
-    public Product(String title, String category, String description, String ingredients, int weight, double price,
+    public Product(String title, String categories, String description, String ingredients, int weight, double price,
                    int stock, String image) {
         this.title = title;
-        this.category = category;
+        this.categories = categories;
         this.description = description;
         this.ingredients = ingredients;
         this.weight = weight;
