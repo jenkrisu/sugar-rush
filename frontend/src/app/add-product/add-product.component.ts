@@ -33,6 +33,10 @@ export class AddProductComponent implements OnInit {
 
   onSubmit(product) {
     console.log("onSubmit");
-    this.productService.addProduct(product).subscribe();
+    this.productService.addProduct(product).subscribe(
+      (data) => {
+        window.location.reload();
+      }
+    );
   }
 }
