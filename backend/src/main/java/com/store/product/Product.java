@@ -13,7 +13,7 @@ import java.util.Date;
 public class Product {
 
     /**
-     * Auto-incremented id for product.
+     * Auto-incremented id.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,11 +67,13 @@ public class Product {
      */
     private String image;
 
+    /**
+     * Default constructor.
+     */
     public Product() {}
 
     public Product(String title, String categories, String description, String ingredients, int weight, double price,
                    int stock, String image) {
-        this.created = new Date();
         this.title = title;
         this.categories = categories;
         this.description = description;
@@ -80,6 +82,14 @@ public class Product {
         this.price = price;
         this.stock = stock;
         this.image = image;
+    }
+
+    /**
+     * Adds datetime.
+     */
+    @PrePersist
+    private void createdAt() {
+        created = new Date();
     }
 
 }

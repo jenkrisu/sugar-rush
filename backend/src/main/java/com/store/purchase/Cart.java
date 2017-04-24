@@ -9,7 +9,11 @@ import java.util.List;
 @Data
 public class Cart {
 
-    private List<CartItem> items;
+    private String items;
     private int total;
+
+    public Cart() {
+
+    }
 
 }

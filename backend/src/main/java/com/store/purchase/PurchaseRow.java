@@ -1,5 +1,6 @@
-package com.store.order;
+package com.store.purchase;
 
+import com.store.product.Product;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,28 +11,32 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class OrderRow {
+public class PurchaseRow {
 
     /**
      * Auto-incremented id.
      */
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     /**
-     * TODO: foreign key orderId, one to one
+     * Foreign key purchase_id.
      */
+    @OneToOne
+    @JoinColumn(nullable=false)
+    private Purchase purchase;
 
     /**
-     * TODO: foreign key productId, one to one
+     * Foreign key product_id.
      */
+    @OneToOne
+    @JoinColumn(nullable=false)
+    private Product product;
 
     /**
      * Amount of product.
      */
     private int amount;
-
-    public OrderRow() {}
 
 }

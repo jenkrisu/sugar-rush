@@ -1,7 +1,7 @@
 package com.store.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.rest.webmvc.RepositoryRestController;
 
 import javax.annotation.PostConstruct;
 
@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
  * Created by Jenni on 7.4.2017.
  */
 
-@RestController
+@RepositoryRestController
 public class ProductController {
 
     /**

@@ -1,5 +1,6 @@
-package com.store.order;
+package com.store.purchase;
 
+import com.store.customer.Customer;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Data
-public class Order {
+public class Purchase {
 
     /**
      * Auto-incremented id.
@@ -16,5 +17,35 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+    /**
+     * Foreign key customer_id.
+     */
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(nullable=false)
+    private Customer customer;
+
+    /**
+     * Datetime of addition.
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+
+    /**
+     * Total amount of purchase.
+     */
+    private double price;
+
+    /**
+     * Default constructor.
+     */
+    public Purchase() {}
+
+    /**
+     * Adds datetime.
+     */
+    @PrePersist
+    private void createdAt() {
+        created = new Date();
+    }
 
 }
