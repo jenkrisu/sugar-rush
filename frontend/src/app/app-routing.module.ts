@@ -8,12 +8,15 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './shopping-cart/contact-information.component';
 
+import { AdminComponent } from './admin/admin.component';
+
 const routes: Routes = [
     { path: '', component: HomePageComponent },
     { path: 'products', component: ProductListComponent },
     { path: 'products/:id', component: ProductDetailComponent },
     { path: 'shoppingcart', component: ShoppingCartComponent },
     { path: 'checkout', component: CheckoutComponent },
+    { path: 'admin', component: AdminComponent },
     { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 

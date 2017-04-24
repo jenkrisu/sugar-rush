@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,8 @@ import { CheckoutComponent } from './shopping-cart/contact-information.component
 
 import { ProductService } from './shared/product.service';
 import { ShoppingCartService } from './shared/shopping-cart.service';
+import { AddProductComponent } from './add-product/add-product.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,14 @@ import { ShoppingCartService } from './shared/shopping-cart.service';
     HomePageComponent,
     ProductDetailComponent,
     ShoppingCartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    AddProductComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
   ],

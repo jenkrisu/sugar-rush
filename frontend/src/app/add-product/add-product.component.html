@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>Add product</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+
+    <ul>
+      <li>
+        <label>Title</label>
+        <input type="text" formControlName="title" />
+      </li>
+
+      <li>
+        <label>Description</label>
+        <input type="text" formControlName="description" />
+      </li>
+
+      <li>
+        <label>Ingredients</label>
+        <input type="text" formControlName="ingredients" />
+      </li>
+
+      <li>
+        <label>Weight</label>
+        <input type="text" formControlName="weight" />
+      </li>
+
+      <li>
+        <label>Price</label>
+        <input type="text" formControlName="price" />
+      </li>
+
+      <li>
+        <label>Stock</label>
+        <input type="text" formControlName="stock" pattern="^[0-9]*$" title="Test"/>
+      </li>
+
+      <li>
+        <label>Image</label>
+        <input type="text" formControlName="image"  />
+      </li>
+    </ul>
+    <button type="submit">Submit</button>
+  </form>
+</div>
