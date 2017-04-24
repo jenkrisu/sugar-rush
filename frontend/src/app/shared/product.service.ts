@@ -27,6 +27,11 @@ export class ProductService {
     return this.http.post("/api/products", product);
   }
 
+  updateProduct(product) {
+    let uri:string = "api/products/" + product.id;
+    return this.http.put(uri, product);
+  }
+
   deleteProduct(product) {
     console.log("deleteProduct");
     let uri:string = "api/products/" + product.id;
