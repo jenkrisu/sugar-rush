@@ -2,10 +2,8 @@ package com.store.product;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by Jenni on 4.4.2017.
@@ -22,6 +20,12 @@ public class Product {
     private Long Id;
 
     /**
+     * Datetime of addition.
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+
+    /**
      * Title of product.
      */
     private String title;
@@ -34,11 +38,13 @@ public class Product {
     /**
      * Description of product.
      */
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     /**
      * List of ingredients.
      */
+    @Column(columnDefinition = "TEXT")
     private String ingredients;
 
     /**
@@ -65,6 +71,7 @@ public class Product {
 
     public Product(String title, String categories, String description, String ingredients, int weight, double price,
                    int stock, String image) {
+        this.created = new Date();
         this.title = title;
         this.categories = categories;
         this.description = description;
