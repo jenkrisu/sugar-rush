@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Cart } from './models/cart';
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public shoppingCart: Cart;
   private subscription: Subscription;
 
-  constructor(private shoppingCartService: ShoppingCartService) {
+  constructor(private router: Router,
+              private shoppingCartService: ShoppingCartService) {
   }
 
   ngOnInit() {
