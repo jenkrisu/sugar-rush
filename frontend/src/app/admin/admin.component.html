@@ -9,5 +9,21 @@
     <button type="button" class="btn btn-primary"
             *ngIf="showAddProduct" (click)="changeAddProductStatus()">X</button>
   </div>
-    <app-add-product *ngIf="showAddProduct"></app-add-product>
+  <app-add-product *ngIf="showAddProduct"></app-add-product>
+
+  <div *ngIf="!showAddProduct">
+    <h4>Products</h4>
+      <div class="row justify-content-center" *ngFor="let p of products">
+        <div class="col-sm-6">
+          <div class="media">
+            <img class="d-flex mr-3 rounded" src="{{ p.image }}" />
+            <div class="media-body">
+              <h5 class="mt-0">{{ p.title }}</h5>
+              <button type="button" class="btn btn-link" (click)="editProduct(p)">Edit</button>
+              <button type="button" class="btn btn-link" (click)="deleteProduct(p)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
 </div>

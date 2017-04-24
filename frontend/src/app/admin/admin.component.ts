@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../shared/product.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class AdminComponent implements OnInit {
 
   showAddProduct: boolean = false;
+  products;
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.getProducts();
   }
 
   changeAddProductStatus() {
@@ -22,4 +25,28 @@ export class AdminComponent implements OnInit {
     }
   }
 
+  getProducts() {
+    this.productService.getProducts()
+      .subscribe(products => {
+          console.log(products);
+          this.products = products;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  }
+
+  editProduct(product) {
+    console.log("Edit: " + JSON.stringify(product));
+
+  }
+
+  deleteProduct(product) {
+    console.log("Delete: " + product);
+    this.productService.deleteProduct(product)
+      .subscribe((data) => {
+        window.location.reload(true);
+      });
+  }
 }
