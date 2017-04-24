@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-
   public activeId: number;
   public modalMessage: string;
   public modalTitle: string;
@@ -19,7 +18,7 @@ export class ProductListComponent implements OnInit {
   public searchTitle: boolean;
   public searchDesc: boolean;
   public searchIngredients: boolean;
-  
+
   // Currently shown products
   public shownProducts;
 
@@ -28,6 +27,7 @@ export class ProductListComponent implements OnInit {
 
   // All products
   products;
+  isAdmin: boolean = true;
 
   constructor(private productService: ProductService,
               private router: Router) {}
@@ -122,7 +122,7 @@ export class ProductListComponent implements OnInit {
     this.shownProducts = this.products.filter(item => item.categories.includes('round'));
     this.prevProducts = this.shownProducts;
   }
-  
+
   // Searches products
   onKeyUp() {
     this.noResults = false;
@@ -164,12 +164,12 @@ export class ProductListComponent implements OnInit {
       if (this.searchIngredients) {
         return ingr.includes(search)
       }
-      
+
       return false;
       }.bind(this));
 
       this.shownProducts = results;
-    
+
       if (results.length === 0) {
         this.noResults = true;
       }

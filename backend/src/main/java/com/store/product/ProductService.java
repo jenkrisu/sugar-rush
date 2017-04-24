@@ -138,6 +138,5 @@ public class ProductService {
                 "Cream, vanilla extract, cookie bits, cocoa, sugar",
                 85, 29.99, 30,
                 "https://dl.dropboxusercontent.com/s/n7w3aewlhhfjnqv/cookies-and-cream.gif"));
-
     }
 }

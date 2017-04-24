@@ -36,7 +36,7 @@
   <form>
     <div class="row justify-content-center align-items-center search-div">
       <div class="col-10 col-sm-8 col-md-6 offset-lg-1 col-lg-4">
-        <input (keyup)="onKeyUp($event)" name="searchWord" [(ngModel)]="searchWord" class="form-control" type="search" [placeholder]="searchHint">
+        <input (keyup)="onKeyUp($event)" [(ngModel)]="searchWord" name="searchWord" class="form-control" type="search" [placeholder]="searchHint">
       </div>
       <div class="col-12 col-sm-8 col-md-6 col-lg-5 search-options-div">
         <div class="form-check form-check-inline">
@@ -95,5 +95,13 @@
         </button>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row align-items-center justify-content-center">
+    <app-product-card *ngFor="let p of products" [product]="p"
+    (onAddedToCart)="onAddedToCart($event)">
+    </app-product-card>
   </div>
 </div>
