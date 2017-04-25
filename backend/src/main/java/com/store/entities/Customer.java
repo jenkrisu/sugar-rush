@@ -1,4 +1,4 @@
-package com.store.customer;
+package com.store.entities;
 
 import lombok.Data;
 

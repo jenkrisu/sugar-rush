@@ -1,7 +1,7 @@
-package com.store.rest.controllers;
+package com.store.controllers;
 
-import com.store.product.Product;
-import com.store.rest.repositories.ProductRepository;
+import com.store.entities.Product;
+import com.store.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

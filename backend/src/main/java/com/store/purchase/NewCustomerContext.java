@@ -1,6 +1,6 @@
 package com.store.purchase;
 
-import com.store.customer.Customer;
+import com.store.entities.Customer;
 import lombok.Data;
 
 /**

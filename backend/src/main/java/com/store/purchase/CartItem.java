@@ -1,6 +1,5 @@
 package com.store.purchase;
 
-import com.store.product.Product;
 import lombok.Data;
 
 /**

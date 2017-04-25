@@ -1,6 +1,5 @@
-package com.store.purchase;
+package com.store.entities;
 
-import com.store.customer.Customer;
 import lombok.Data;
 
 import javax.persistence.*;

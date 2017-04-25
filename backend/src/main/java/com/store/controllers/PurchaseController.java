@@ -1,9 +1,8 @@
-package com.store.rest.controllers;
+package com.store.controllers;
 
+import com.store.entities.Purchase;
 import com.store.purchase.*;
-import com.store.rest.repositories.CustomerRepository;
-import com.store.rest.repositories.PurchaseRepository;
-import com.store.rest.repositories.PurchaseRowRepository;
+import com.store.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.HttpStatus;
@@ -36,6 +35,11 @@ public class PurchaseController {
      */
     @Autowired
     private CustomerRepository customerRepository;
+
+    /**
+     * Gets instance of ProductRepository.
+     */
+    private ProductRepository productRepository;
 
     /**
      * Adds new purchase for a new customer.

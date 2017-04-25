@@ -1,6 +1,6 @@
-package com.store.rest.repositories;
+package com.store.repositories;
 
-import com.store.purchase.PurchaseRow;
+import com.store.entities.PurchaseRow;
 import org.springframework.data.repository.CrudRepository;
 
 /**

@@ -1,6 +1,6 @@
-package com.store.rest.repositories;
+package com.store.repositories;
 
-import com.store.product.Product;
+import com.store.entities.Product;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
