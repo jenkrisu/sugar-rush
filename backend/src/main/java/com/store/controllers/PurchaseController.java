@@ -1,7 +1,9 @@
-package com.store.purchase;
+package com.store.rest.controllers;
 
-import com.store.customer.CustomerRepository;
-import com.store.product.Product;
+import com.store.purchase.*;
+import com.store.rest.repositories.CustomerRepository;
+import com.store.rest.repositories.PurchaseRepository;
+import com.store.rest.repositories.PurchaseRowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.HttpStatus;

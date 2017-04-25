@@ -1,5 +1,6 @@
-package com.store.customer;
+package com.store.rest.repositories;
 
+import com.store.customer.Customer;
 import org.springframework.data.repository.CrudRepository;
 
 /**

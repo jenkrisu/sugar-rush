@@ -1,4 +1,4 @@
-package com.store.product;
+package com.store.rest.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;

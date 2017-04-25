@@ -1,7 +1,7 @@
-package com.store.purchase;
+package com.store.rest.repositories;
 
+import com.store.purchase.PurchaseRow;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  * Created by Jenni on 24.4.2017.
