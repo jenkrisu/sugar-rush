@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public shoppingCart: Cart;
   private subscription: Subscription;
 
-  constructor(private router: Router,
+  constructor(public router: Router,
               private shoppingCartService: ShoppingCartService) {
   }
 
