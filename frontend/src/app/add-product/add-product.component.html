@@ -1,44 +1,46 @@
-<div class="container">
-  <h2>Add product</h2>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+          <h4>Add product</h4>
+          <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
 
-    <ul>
-      <li>
-        <label>Title</label>
-        <input type="text" formControlName="title" />
-      </li>
+            <div class="form-group">
+              <label for="productTitle">Title</label>
+              <input class="form-control" type="text" id="productTitle" formControlName="title" />
+            </div>
 
-      <li>
-        <label>Description</label>
-        <input type="text" formControlName="description" />
-      </li>
+            <div class="form-group">
+              <label for="productDescription">Description</label>
+              <input class="form-control" id="productDescription" type="text" formControlName="description" />
+            </div>
 
-      <li>
-        <label>Ingredients</label>
-        <input type="text" formControlName="ingredients" />
-      </li>
+            <div class="form-group">
+              <label for="productIngredients">Ingredients</label>
+              <input class="form-control" type="text" id="productIngredients" formControlName="ingredients" />
+            </div>
+            <div class="form-group">
+              <label for="productCategories">Categories</label>
+              <input class="form-control" type="text" id="productCategories" formControlName="categories" />
+            </div>
 
-      <li>
-        <label>Weight</label>
-        <input type="text" formControlName="weight" />
-      </li>
+            <div class="form-group">
+              <label for="productWeight">Weight</label>
+              <input class="form-control" type="text" id="productWeight" formControlName="weight" />
+            </div>
 
-      <li>
-        <label>Price</label>
-        <input type="text" formControlName="price" />
-      </li>
+            <div class="form-group">
+              <label for="productPrice">Price</label>
+              <input class="form-control" type="text" id="productPrice" formControlName="price" />
+            </div>
 
-      <li>
-        <label>Stock</label>
-        <input type="text" formControlName="stock" pattern="^[0-9]*$" title="Test"/>
-      </li>
+            <div class="form-group">
+              <label for="productStock">Stock</label>
+              <input class="form-control" type="text" id="productStock" formControlName="stock" pattern="^[0-9]*$" title="Test"/>
+            </div>
 
-      <li>
-        <label>Image</label>
-        <input type="text" formControlName="image"  />
-      </li>
-    </ul>
-    <button type="submit">Submit</button>
-  </form>
-</div>
+            <div class="form-group">
+              <label for="productImage">Image</label>
+              <input class="form-control" type="text" id="productImage" formControlName="image"  />
+            </div>
+
+            <button type="submit" class="btn btn-link">Add Product</button>
+          </form>
+
