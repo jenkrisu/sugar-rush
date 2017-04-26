@@ -1,0 +1,14 @@
+<div class="col">
+  <div class="card">
+    <img src="{{ product.image }}" class="card-img-top img-fluid" />
+    <div class="card-block">
+      <h4 class="card-title"> {{ product.title }}</h4>
+      <p class="card-text"> {{ product.price }} &euro;</p>
+    </div>
+    <div class="card-block card-buttons-block">
+      <button type="button" class="btn btn-link" [routerLink]="['/products', product.id]">Details</button>
+      <button type="button" class="btn btn-link" (click)="addToCart(product)"
+      data-toggle="modal" data-target="#produtListModal">Add to Cart</button>
+    </div>
+  </div>
+</div>

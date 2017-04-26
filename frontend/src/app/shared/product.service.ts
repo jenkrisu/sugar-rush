@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { Product } from '../models/product';
 
 @Injectable()
 export class ProductService {
@@ -11,7 +12,6 @@ export class ProductService {
 
   getProducts() {
     return this.http.get("/api/products").map(res => {
-      console.log(res.json()._embedded.products);
       return res.json()._embedded.products;
     });
   }
@@ -21,5 +21,20 @@ export class ProductService {
       console.log("GetProduct response: " + res.json());
       return res.json();
     });
+  }
+
+  addProduct(product) {
+    return this.http.post("/api/products", product);
+  }
+
+  updateProduct(product) {
+    let uri:string = "api/products/" + product.id;
+    return this.http.put(uri, product);
+  }
+
+  deleteProduct(product) {
+    console.log("deleteProduct");
+    let uri:string = "api/products/" + product.id;
+    return this.http.delete(uri);
   }
 }

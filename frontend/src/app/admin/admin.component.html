@@ -1,0 +1,81 @@
+<div class="container">
+  <h2>
+    Admin
+  </h2>
+
+  <div>
+    <button type="button" class="btn btn-primary"
+            *ngIf="!showAddProduct" (click)="changeAddProductStatus()">+ Add Product</button>
+    <button type="button" class="btn btn-primary"
+            *ngIf="showAddProduct" (click)="changeAddProductStatus()">X</button>
+  </div>
+  <app-add-product *ngIf="showAddProduct"></app-add-product>
+
+  <div *ngIf="!showAddProduct">
+    <h4>Products</h4>
+      <div class="row justify-content-center" *ngFor="let p of products">
+        <div class="col-sm-8">
+          <div class="media">
+            <img class="d-flex mr-3 rounded img-fluid" src="{{ p.image }}" />
+            <div class="media-body">
+              <h5 class="mt-0">{{ p.title }}</h5>
+
+              <button type="button" class="btn btn-link"
+                      data-toggle="collapse"
+                      [attr.data-target]="'#collapseProduct' + p.id"
+                      aria-expanded="false" aria-controls="collapseProduct"
+                      (click)="expandProduct(p)">Edit</button>
+
+              <button type="button" class="btn btn-link" (click)="deleteProduct(p)">Delete</button>
+
+            </div>
+          </div>
+          <div class="collapse" attr.id="collapseProduct{{p.id}}">
+            <div class="card">
+              <div class="card-block">
+                <h4>Edit product</h4>
+
+                <form [formGroup]="form" (ngSubmit)="editProduct(form.value)">
+
+                  <div class="form-group">
+                    <label for="tmpProductTitle">Title</label>
+                    <input type="text" class="form-control" id="tmpProductTitle" formControlName="title" value="{{p.title}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="tmpProductIngredients">Ingredients</label>
+                    <input type="text" class="form-control" id="tmpProductIngredients" formControlName="ingredients" value="{{p.ingredients}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="tmpProductDescription">Description</label>
+                    <input type="text" class="form-control" id="tmpProductDescription" formControlName="description" value="{{p.description}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="tmpProductWeight">Weight</label>
+                    <input type="number" class="form-control" id="tmpProductWeight" formControlName="weight" value="{{p.weight}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="tmpProductPrice">Price</label>
+                    <input type="number" class="form-control" id="tmpProductPrice" formControlName="price" value="{{p.price}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="tmpProductStock">Stock</label>
+                    <input type="number" class="form-control" id="tmpProductStock" formControlName="stock" value="{{p.stock}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="tmpProductImage">Image</label>
+                    <input type="text" class="form-control" id="tmpProductImage" formControlName="image" value="{{p.image}}">
+                  </div>
+                  <button type="button" class="btn btn-link"
+                          data-toggle="collapse"
+                          [attr.data-target]="'#collapseProduct' + p.id"
+                          aria-expanded="false" aria-controls="collapseProduct"
+                          (click)="resetTmpProduct()">Cancel</button>
+                  <button type="submit" class="btn btn-link">Save Changes</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

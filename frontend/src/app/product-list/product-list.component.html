@@ -1,23 +1,99 @@
+<div class="container clear-navbar">
+  <div class="row align-items-center justify-content-center">
+    <h4>Shop Chocolate</h4>
+  </div>
+
+  <!-- Nav pills -->
+  <div class="row justify-content-center">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a (click)="showNew($event)" [class.active]="activeId === 1" class="nav-link" href="#" role="button">
+          New <span class="additional-text">Arrivals</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a (click)="showAll($event)" [class.active]="activeId === 2" class="nav-link" href="#">
+          All <span class="additional-text">Chocolates</span>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" [class.active]="activeId === 3" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        By Type
+        </a>
+        <div class="dropdown-menu">
+          <a (click)="showRounds($event)" class="dropdown-item" href="#">Chocolate Rounds</a>
+          <a (click)="showTruffles($event)" class="dropdown-item" href="#">Truffle Delights</a>
+          <a (click)="showBars($event)" class="dropdown-item" href="#">Chocolate Bars</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Search (if not in New Arrivals nav) -->
+<div *ngIf="activeId !== 1" class="container">
+
+  <form>
+    <div class="row justify-content-center align-items-center search-div">
+      <div class="col-10 col-sm-8 col-md-6 offset-lg-1 col-lg-4">
+        <input (keyup)="onKeyUp($event)" [(ngModel)]="searchWord" name="searchWord" class="form-control" type="search" [placeholder]="searchHint">
+      </div>
+      <div class="col-12 col-sm-8 col-md-6 col-lg-5 search-options-div">
+        <div class="form-check form-check-inline">
+          By &nbsp;
+          <label class="form-check-label">
+            <input type="checkbox" [(ngModel)]="searchTitle" name="searchTitle" (change)="onKeyUp()" class="form-check-input">
+            Title
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+              <input type="checkbox" [(ngModel)]="searchDesc" name="searchDesc" (change)="onKeyUp()" class="form-check-input">
+              Description
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+          <input type="checkbox" [(ngModel)]="searchIngredients" name="searchIngredients" (change)="onKeyUp()" class="form-check-input">
+           Ingredients
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="!searchTitle && !searchDesc && !searchIngredients" class="row align-items-center justify-content-center">
+    <p>Select search options to search.</p>
+  </div>
+  <div *ngIf="noResults && searchOptions()" class="row align-items-center justify-content-center">
+    <p>No results.</p>
+  </div>
+</div>
+
+<!-- Show products -->
+<div class="container">
+  <div class="row align-items-center justify-content-center">
+    <app-product-card *ngFor="let p of shownProducts" [product]="p" (onAddedToCart)="onAddedToCart($event)">
+    </app-product-card>
+  </div>
+</div>
+
+<!-- Shopping cart modal -->
 <div class="modal fade" id="produtListModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Shopping Cart</h5>
+        <h5 class="modal-title">{{ modalTitle }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <p>{{ modalMessage }}</p>
+        <button *ngIf="modalTitle === 'Item Added'" data-dismiss="modal" routerLink="/shoppingcart" type="button" class="btn btn-secondary">
+         Show Shopping Cart
+        </button>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row align-items-center justify-content-center">
-    <app-product *ngFor="let p of products" [product]="p"
-    (onAddedToCart)="onAddedToCart($event)">
-    </app-product>
   </div>
 </div>

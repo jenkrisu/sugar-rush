@@ -1,0 +1,62 @@
+#boutique-description {
+    margin: 50px 0;
+}
+
+.carousel-indicators li {
+  background-color: rgba(70,70,70,.25);
+}
+
+.carousel-indicators .active {
+  background-color: rgba(70,70,70,1);
+}
+
+span.carousel-control-prev-icon{
+  color: rgba(70,70,70,1);
+  background-color: rgba(70,70,70,1);
+}
+
+.carousel-product-image-wrapper {
+    width: 90%;
+    max-width: 500px;
+}
+
+.carousel-product-image {
+    width: 100%;
+    height: auto;
+}
+
+.carousel-caption {
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: default;
+    padding: 0;
+
+    a {
+        color: #ffffff;
+
+        &:hover {
+            text-decoration: none;
+            color: rgba(255,255,255,0.9);
+        
+
+            h5 {
+                background-color: rgba(70,70,70,0.8);
+            }
+        }
+    }
+
+    h5 {
+      padding: 10px 0;
+      background-color: rgba(70,70,70,0.9);
+      width: 500px;
+      max-width: 90%;
+      margin: 0 auto;
+      font-weight: normal;
+      border-radius: 2px;
+    }
+}
+
+.big-text {
+    font-size: 1.1em;
+}

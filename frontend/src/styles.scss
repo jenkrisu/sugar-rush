@@ -5,13 +5,18 @@
 // Core variables and mixins
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
-
-$font-family-sans-serif: "Open Sans", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
-
+$font-family-sans-serif: "Open Sans",
+-apple-system,
+system-ui,
+BlinkMacSystemFont,
+"Segoe UI",
+Roboto,
+"Helvetica Neue",
+Arial,
+sans-serif !default;
 // Reset and dependencies
 @import "~bootstrap/scss/normalize";
 @import "~bootstrap/scss/print";
-
 // Core CSS
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
@@ -21,7 +26,6 @@ $font-family-sans-serif: "Open Sans", -apple-system, system-ui, BlinkMacSystemFo
 @import "~bootstrap/scss/tables";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/buttons";
-
 // Components
 @import "~bootstrap/scss/transitions";
 @import "~bootstrap/scss/dropdown";
@@ -41,73 +45,99 @@ $font-family-sans-serif: "Open Sans", -apple-system, system-ui, BlinkMacSystemFo
 @import "~bootstrap/scss/list-group";
 @import "~bootstrap/scss/responsive-embed";
 @import "~bootstrap/scss/close";
-
 // Components w/ JavaScript
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/tooltip";
 @import "~bootstrap/scss/popover";
 @import "~bootstrap/scss/carousel";
-
 // Utility classes
 @import "~bootstrap/scss/utilities";
-
 #center-loader {
-    text-align: center;
-    width: 150px;
-    margin: 50px auto 0 auto;
+  text-align: center;
+  width: 150px;
+  margin: 50px auto 0 auto;
 }
 
 #header-image {
-    padding-top: 32vh;
-    height: 70vh;
-    background: url("assets/img/chocolate-assortment.jpg") no-repeat center center fixed;
-    background-size: cover;
-    box-shadow: 0px 1px 4px -2px rgba(0,0,0,0.55);
-
-    h2 {
-        padding: 10px;
-        font-family: 'Federo', $font-family-sans-serif;
-    }
-
-    p {
-        padding: 5px;
-    }
+  padding-top: 32vh;
+  height: 70vh;
+  background: url("https://dl.dropboxusercontent.com/s/0u0v2cc7mw6dytc/chocolate-assortment.jpg") no-repeat center center fixed;
+  background-size: cover;
+  box-shadow: 0px 1px 4px -2px rgba(0, 0, 0, 0.55);
+  h2 {
+    padding: 10px;
+    font-family: 'Federo', $font-family-sans-serif;
+  }
+  p {
+    padding: 5px;
+  }
 }
 
 .opaque-background {
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 1px 4px -2px rgba(0,0,0,0.15);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 1px 4px -2px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
 }
 
 .navbar-brand {
-    font-family: 'Federo', $font-family-sans-serif;
+  font-family: 'Federo', $font-family-sans-serif;
 }
 
 .navbar {
-    background-color: rgba(255,255,255,1);
-    box-shadow: 0px 1px 4px -2px rgba(0,0,0,0.55);
-
-    a {
-       color: $navbar-light-color; 
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1px 4px -2px rgba(0, 0, 0, 0.55);
+  a {
+    color: $navbar-light-color;
     &:hover {
-        color: $navbar-light-hover-color;
+      color: $navbar-light-hover-color;
     }
-    &:active, &:focus {
-        color: $navbar-light-active-color;
-        }
+    &:active,
+    &:focus {
+      color: $navbar-light-active-color;
     }
+  }
 }
 
 .navbar-toggler:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-@include media-breakpoint-down(md) {
-    #nav-container {
-        margin-left: 0px;
-    }
+.clear-navbar {
+  padding-top: 100px;
+}
 
-    .navbar-brand {
-        width: 200px;
-    }
+footer {
+  height: 50px;
+}
+
+h4 {
+  padding-bottom: 20px;
+}
+
+
+/* Display additional text on products nav pills on larger displays */
+
+.additional-text {
+  display: none;
+}
+
+@include media-breakpoint-up(sm) {
+  .additional-text {
+    display: inline-block;
+  }
+}
+
+
+/* Fixes for bug in sticky navigation menu when display is small */
+
+@include media-breakpoint-down(md) {
+  #nav-container {
+    margin-left: 0px;
+  }
+  .navbar-brand {
+    width: 200px;
+  }
+  .search-options-div {
+    text-align: center;
+  }
 }

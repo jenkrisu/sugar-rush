@@ -1,32 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product/product.component';
+import { ProductCardComponent } from './product-card/product.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { NewProductsComponent } from './new-products/new-products.component';
+import { HomePageComponent } from './home-page/home-page.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './shopping-cart/contact-information.component';
 
 import { ProductService } from './shared/product.service';
 import { ShoppingCartService } from './shared/shopping-cart.service';
+import { AddProductComponent } from './add-product/add-product.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
+    ProductCardComponent,
     ProductListComponent,
-    NewProductsComponent,
+    HomePageComponent,
     ProductDetailComponent,
-    CheckoutComponent
+    ShoppingCartComponent,
+    CheckoutComponent,
+    AddProductComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
   ],

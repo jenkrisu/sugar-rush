@@ -1,0 +1,44 @@
+<div id="header-image" class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <h2 class="opaque-background">Sweet Tooth Boutique</h2>
+      <p class="opaque-background big-text">Home of Handmade Confectionery</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <div id="boutique-description" class="big-text">
+        Sweet Tooth Boutique makes handcrafted chocolate delights.
+        We use fresh and organic ingredients with no preservatives or artificial flavors.
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <h4>Featured Products</h4>
+  </div> 
+
+  <div class="row justify-content-center">
+    <div id="newProductsCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#newProductsCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#newProductsCarousel" data-slide-to="1"></li>
+        <li data-target="#newProductsCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div *ngFor="let product of products; let i = index" 
+        class="carousel-item" [class.active]="i === 0">
+          <div class="carousel-caption">
+            <a [routerLink]="['/products', product.id]"><h5>{{ product.title }}</h5></a>
+          </div>
+          <div class="carousel-product-image-wrapper">
+            <img class="d-block img-fluid carousel-product-image" src="{{ product.image }}" alt="product.title">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
