@@ -1,19 +1,39 @@
 <div class="container">
-  <h2>
+  <h2 class="admin-component-header">
     Admin
   </h2>
+  <div class="admin-navbar">
+    <div class="h4 add-product-header">Products: {{productAmount}}</div>
+    <button type="button" class="add-product-button btn btn-link"
+            data-toggle="collapse"
+            data-target="#collapseAddProduct"
+            (click)="changeAddProductStatus()"
+            *ngIf="!showAddProduct">+ Add Product</button>
+  </div>
+  <div class="add-product-collapse collapse" id="collapseAddProduct">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-block">
+            <button type="button" class="add-product-close-button-top btn btn-link"
+                    data-toggle="collapse"
+                    data-target="#collapseAddProduct"
+                    (click)="changeAddProductStatus()"
+                    *ngIf="showAddProduct">Close</button>
+            <app-add-product></app-add-product>
+            <button type="button" class="add-product-close-button btn btn-link"
+                    data-toggle="collapse"
+                    data-target="#collapseAddProduct"
+                    (click)="changeAddProductStatus()"
+                    *ngIf="showAddProduct">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div>
-    <button type="button" class="btn btn-primary"
-            *ngIf="!showAddProduct" (click)="changeAddProductStatus()">+ Add Product</button>
-    <button type="button" class="btn btn-primary"
-            *ngIf="showAddProduct" (click)="changeAddProductStatus()">X</button>
-  </div>
-  <app-add-product *ngIf="showAddProduct"></app-add-product>
-
-  <div *ngIf="!showAddProduct">
-    <h4>Products</h4>
-      <div class="row justify-content-center" *ngFor="let p of products">
+      <div class="row" *ngFor="let p of products">
         <div class="col-sm-8">
           <div class="media">
             <img class="d-flex mr-3 rounded img-fluid" src="{{ p.image }}" />

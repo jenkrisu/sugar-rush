@@ -4,10 +4,43 @@
 
 .rounded {
   padding: 16px;
-  max-height: 15rem;
-  max-width: 15rem;
+  max-height: 10rem;
+  max-width: 10rem;
 }
 
 .card {
+  margin-bottom: 16px;
+}
+
+.add-product-close-button-top {
+  float: right;
+}
+
+.navbar {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0;
+}
+
+.add-product-collapse {
+  margin-top:50px;
+}
+
+.add-product-header {
+  display: inline-block;
+  vertical-align: middle;
+  float: left;
+}
+
+.add-product-button {
+  display: inline-block;
+  vertical-align: middle;
+  float:right;
+}
+
+.admin-navbar {
+  margin-bottom: 50px;
+}
+
+.admin-component-header {
   margin-bottom: 16px;
 }
