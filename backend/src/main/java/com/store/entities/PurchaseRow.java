@@ -17,7 +17,7 @@ public class PurchaseRow {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private int Id;
 
     /**
      * Foreign key purchase_id.

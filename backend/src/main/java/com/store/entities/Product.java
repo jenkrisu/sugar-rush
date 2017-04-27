@@ -17,7 +17,7 @@ public class Product {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private int Id;
 
     /**
      * Datetime of addition.

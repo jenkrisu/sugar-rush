@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
  * Created by Jenni on 24.4.2017.
  */
 @RepositoryRestResource
-public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
+public interface PurchaseRepository extends CrudRepository<Purchase, Integer> {
 
     /**
      * Prevents deleting purchase.
@@ -17,7 +17,7 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
      */
     @Override
     @RestResource(exported = false)
-    void delete(Long id);
+    void delete(Integer id);
 
     /**
      * Prevents deleting purchase.
