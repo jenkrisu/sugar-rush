@@ -5,4 +5,7 @@ export class LoginService {
 
   constructor() { }
 
+  registerUser(user) {
+    console.log("User: " + JSON.stringify(user));
+  }
 }
