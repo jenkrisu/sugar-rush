@@ -42,9 +42,14 @@ h3 {
   margin: 15px auto;
 }
 
-.info-icon {
-  height: 30px;
+.info-icon, .confirmation-icon {
+  height: 28px;
   vertical-align: middle;
+}
+
+.confirmation-icon {
+  color: rgba(0, 0, 0, 0.7);
+  margin-right: 10px;
 }
 
 h5 {
@@ -64,4 +69,12 @@ h5 {
 
 .list-group {
   margin-bottom: 20px;
+}
+
+.iconless {
+  margin-left: 38px;
+}
+
+h4 {
+  margin: 20px 0;
 }

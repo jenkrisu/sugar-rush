@@ -16,6 +16,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ContactInformationComponent } from './shopping-cart/contact-information.component';
 import { PaymentComponent } from './shopping-cart/payment.component';
+import { ConfirmationComponent } from './shopping-cart/confirmation.component';
 
 import { AdminComponent } from './admin/admin.component';
 import { AddProductComponent } from './add-product/add-product.component';
@@ -23,6 +24,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ProductService } from './shared/product.service';
 import { ShoppingCartService } from './shared/shopping-cart.service';
 import { LoginService } from './shared/login.service';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { LoginService } from './shared/login.service';
     AddProductComponent,
     AdminComponent,
     RegistrationComponent,
-    PaymentComponent
+    PaymentComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
