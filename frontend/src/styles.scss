@@ -22,7 +22,7 @@ $navbar-light-color: rgba($custom-navbar-color, .7);
 $navbar-light-hover-color: rgba($custom-navbar-color, .8);
 $navbar-light-active-color: rgba($custom-navbar-color, .9);
 $navbar-light-disabled-color: rgba($custom-navbar-color, .3);
-$navbar-light-toggler-border: rgba($custom-navbar-color, .2);
+$navbar-light-toggler-border: rgba($custom-navbar-color, .3);
 
 $navbar-light-toggler-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$custom-navbar-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"), "#", "%23");
 
@@ -127,6 +127,21 @@ h4 {
   padding-bottom: 20px;
 }
 
+/* Shopping lines cart */
+.line {
+  width: 20px;
+  display: inline-block;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+}
+
+.line-dotted {
+  width: 20px;
+  display: inline-block;
+  border-bottom: 2px dotted rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+}
+
 
 /* Display additional text on products nav pills on larger displays */
 
@@ -137,6 +152,16 @@ h4 {
 @include media-breakpoint-up(sm) {
   .additional-text {
     display: inline-block;
+  }
+
+  .line, .line-dotted {
+    width: 50px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .line, .line-dotted {
+    width: 100px;
   }
 }
 
