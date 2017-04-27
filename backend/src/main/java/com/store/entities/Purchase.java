@@ -19,7 +19,7 @@ public class Purchase {
     /**
      * Foreign key customer_id.
      */
-    @OneToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(nullable=false)
     private Customer customer;
 
