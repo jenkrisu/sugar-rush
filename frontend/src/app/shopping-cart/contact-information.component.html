@@ -126,11 +126,11 @@
   <!-- Navigation -->
 
   <div class="row justify-content-center bottom-navigation">
-    <div [class.col-4]="!loggedIn" [class.col-3]="loggedIn">
+    <div class="col-6" [class.col-md-4]="!loggedIn" [class.col-md-3]="loggedIn">
       <button routerLink="/shoppingcart" type="button" class="btn btn-secondary">Previous</button>
     </div>
-    <div *ngIf="!loggedIn" class="col-1"></div>
-    <div [class.col-4]="!loggedIn" [class.col-3]="loggedIn" class="text-right">
+    <div *ngIf="!loggedIn" class="hidden-md-down col-1"></div>
+    <div class="col-6 text-right" [class.col-md-4]="!loggedIn" [class.col-md-3]="loggedIn">
       <button (click)="continue()" type="button" class="btn btn-primary">Continue</button>
     </div>
   </div>

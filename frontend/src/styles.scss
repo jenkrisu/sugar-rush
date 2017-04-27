@@ -165,6 +165,10 @@ footer {
 /* Fixes for bug in sticky navigation menu when display is small */
 
 @include media-breakpoint-down(md) {
+  .order-options-divider {
+    margin-top: 0px !important;
+  }
+
   #nav-container {
     margin-left: 0px;
   }
