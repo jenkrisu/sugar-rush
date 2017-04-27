@@ -18,6 +18,7 @@ import { ShoppingCartService } from './shared/shopping-cart.service';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { LoginService } from './shared/login.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RegistrationComponent } from './registration/registration.component';
   ],
   providers: [
     ProductService,
-    ShoppingCartService
+    ShoppingCartService,
+    LoginService
     ],
   bootstrap: [AppComponent]
 })
