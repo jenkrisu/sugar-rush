@@ -50,3 +50,18 @@ h3 {
 h5 {
   margin: 5px auto 20px auto;
 }
+
+.bill-icon {
+  font-size: 40px;
+  margin: 0 15px;
+}
+
+.payment-input {  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.list-group {
+  margin-bottom: 20px;
+}

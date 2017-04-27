@@ -12,4 +12,8 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
   }
 
+  chooseMethod(event: any) {
+    event.preventDefault();
+  }
+
 }
