@@ -16,7 +16,6 @@ import { AdminComponent } from './admin/admin.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { RegistrationComponent } from './registration/registration.component';
 
-import { CustomerService } from './shared/customer.service';
 import { ProductService } from './shared/product.service';
 import { ShoppingCartService } from './shared/shopping-cart.service';
 import { LoginService } from './shared/login.service';
@@ -42,7 +41,6 @@ import { LoginService } from './shared/login.service';
     AppRoutingModule
   ],
   providers: [
-    CustomerService,
     ProductService,
     ShoppingCartService,
     LoginService
