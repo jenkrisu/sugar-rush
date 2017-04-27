@@ -3,22 +3,36 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
 
+import { Address } from '../models/address';
 import { Cart } from '../models/cart';
 import { CartItem } from '../models/cart-item';
+import { Customer } from '../models/customer';
 import { Product } from '../models/product';
 
 @Injectable()
 export class ShoppingCartService {
 
   private cart = new BehaviorSubject<Cart>(new Cart([], 0));
+  private customer = new BehaviorSubject<Customer>(new Customer(new Address("", "", "", ""), "", "", ""));
 
+  // Get cart from browser storage
   constructor() {
     this.getCartFromStorage();
   }
 
-  // Return BehaviourSubject for Subscription
+  // Return BehaviorSubject for Subscription
   getShoppingCart() {
     return this.cart;
+  }
+
+  // Return BehaviorSubject for Subscription
+  getCustomer() {
+    return this.customer;
+  }
+
+  // Set value to BehaviourSubject
+  setCustomer(customer: Customer) {
+    this.customer.next(customer);
   }
 
   // Remove items from shopping cart
