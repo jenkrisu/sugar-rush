@@ -30,7 +30,7 @@
   <div class="row justify-content-center">
 
     <!-- Login -->
-    <div class="col-md-4">
+    <div *ngIf="!loggedIn" class="col-md-4">
       <div class="rounded-border">
         <h5>Login to Order</h5>
         <form>
@@ -58,14 +58,14 @@
       </div>
     </div>
 
-    <div class="col-md-1 text-center">
+    <div *ngIf="!loggedIn" class="col-md-1 text-center">
       <div class="order-options-divider">OR</div>
     </div>
 
-    <!-- Without account -->
-    <div class="col-md-4">
+    <div [class.col-md-4]="!loggedIn" [class.col-md-6]="loggedIn">
       <div class="rounded-border">
-        <h5>Order without Account</h5>
+        <h5 *ngIf="!loggedIn">Order without Account</h5>
+        <h5 *ngIf="loggedIn">Fillout Order Information</h5>
 
         <div class="alert alert-info" role="alert">
           <i class="material-icons info-icon">info_outline</i> Fields with asterisk (*) are required.
@@ -114,9 +114,6 @@
             <label>Email*</label>
             <input name="email" [(ngModel)]="email" type="email" class="form-control form-control-danger">
             <div *ngIf="emailError" class="form-control-feedback">Invalid email.</div>
-            <small class="form-text text-muted">
-              Order information is sent to this address.
-            </small>
           </div>
           <div *ngIf="cannotContinue" class="alert alert-danger" role="alert">
             <i class="material-icons info-icon">error_outline</i> Please fill out required fields.
@@ -129,11 +126,11 @@
   <!-- Navigation -->
 
   <div class="row justify-content-center bottom-navigation">
-    <div class="col-4">
+    <div [class.col-4]="!loggedIn" [class.col-3]="loggedIn">
       <button routerLink="/shoppingcart" type="button" class="btn btn-secondary">Previous</button>
     </div>
-    <div class="col-1"></div>
-    <div class="col-4 text-right">
+    <div *ngIf="!loggedIn" class="col-1"></div>
+    <div [class.col-4]="!loggedIn" [class.col-3]="loggedIn" class="text-right">
       <button (click)="continue()" type="button" class="btn btn-primary">Continue</button>
     </div>
   </div>

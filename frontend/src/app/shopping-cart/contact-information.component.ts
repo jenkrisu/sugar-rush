@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Address } from '../models/address';
@@ -32,19 +33,31 @@ export class ContactInformationComponent implements OnInit, OnDestroy, DoCheck {
   email: string;
 
   private customer: Customer;
-  private subscription: Subscription;
+  private customerSubscription: Subscription;
 
-  constructor(private loginService: LoginService) { }
+  loggedIn: boolean;
+  private loginSubscription: Subscription;
 
-  // Subscribe to Customer BehaviorSubject
+  constructor(private loginService: LoginService,
+    private router: Router) { }
+
+  // Subscribe to Customer BehaviorSubject for saving form input data
   ngOnInit() {
-    this.subscription = this.loginService
+    this.loggedIn = false;
+
+    //TODO: Login
+    //this.loginSubscription = this.loginService
+    // .getLoggedIn()
+    // .subscribe(item -> this.loggedIn = item);
+
+    this.customerSubscription = this.loginService
       .getCustomer()
       .subscribe(item => this.customer = item);
+
     this.fillContactForm();
   }
 
-  // Update the BehaviorSubject when changes to input fields occur
+  // Update the Customer BehaviorSubject when changes to input fields occur
   ngDoCheck() {
     if (this.customer !== undefined) {
       this.updateCustomer();
@@ -53,17 +66,19 @@ export class ContactInformationComponent implements OnInit, OnDestroy, DoCheck {
 
   // Unsubscribe
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    //TODO: Login
+    //this.loginSubscription.unsubscribe();
+    this.customerSubscription.unsubscribe();
   }
 
-  // Create customer and update it to ShoppingCartService
+  // Create customer for input data storage and update it to ShoppingCartService
   updateCustomer() {
     const address = new Address(this.street, this.postal, this.city, this.country);
     let c = new Customer(address, this.firstName, this.lastName, this.email);
     this.loginService.setCustomer(c);
   }
 
-  // Fill contact information form with previously inputted data
+  // Fill contact information form with possible previously inputted data
   fillContactForm() {
     this.street = this.customer.address.street;
     this.postal = this.customer.address.postal;
@@ -78,6 +93,7 @@ export class ContactInformationComponent implements OnInit, OnDestroy, DoCheck {
 
     if (this.formIsValidated()) {
       this.cannotContinue = false;
+      this.router.navigate(['/payment']);
 
     } else {
       this.cannotContinue = true;
@@ -93,7 +109,7 @@ export class ContactInformationComponent implements OnInit, OnDestroy, DoCheck {
     this.streetError = false;
     this.cityError = false;
     this.postalError = false;
-    this.countryError= false;
+    this.countryError = false;
     this.emailError = false;
 
     if (this.firstName.length < 1) {
@@ -110,7 +126,7 @@ export class ContactInformationComponent implements OnInit, OnDestroy, DoCheck {
       this.streetError = true;
       validated = false;
     }
-    
+
     if (this.postal.length < 1) {
       this.postalError = true;
       validated = false;
