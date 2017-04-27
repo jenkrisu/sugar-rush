@@ -14,11 +14,12 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './shopping-cart/contact-information.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 import { CustomerService } from './shared/customer.service';
 import { ProductService } from './shared/product.service';
 import { ShoppingCartService } from './shared/shopping-cart.service';
-
+import { LoginService } from './shared/login.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ShoppingCartService } from './shared/shopping-cart.service';
     ShoppingCartComponent,
     CheckoutComponent,
     AddProductComponent,
-    AdminComponent
+    AdminComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { ShoppingCartService } from './shared/shopping-cart.service';
   providers: [
     CustomerService,
     ProductService,
-    ShoppingCartService
+    ShoppingCartService,
+    LoginService
     ],
   bootstrap: [AppComponent]
 })

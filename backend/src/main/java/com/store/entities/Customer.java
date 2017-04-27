@@ -22,10 +22,26 @@ public class Customer {
     private int Id;
 
     //TODO: Add address, one customer can have many addresses
-    //private Address address;
+    /**
+     * Customer's address foreign key address_id.
+     */
+    @OneToMany
+    @JoinColumn(nullable=false)
+    private Address address;
 
+    /**
+     * First name of the customer.
+     */
     private String firstName;
+
+    /**
+     * Last name of the customer.
+     */
     private String lastName;
+
+    /**
+     * Email of the customer.
+     */
     private String email;
 
 }
