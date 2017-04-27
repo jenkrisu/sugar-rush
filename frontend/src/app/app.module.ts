@@ -12,11 +12,13 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './shopping-cart/contact-information.component';
+import { AdminComponent } from './admin/admin.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
+import { CustomerService } from './shared/customer.service';
 import { ProductService } from './shared/product.service';
 import { ShoppingCartService } from './shared/shopping-cart.service';
-import { AddProductComponent } from './add-product/add-product.component';
-import { AdminComponent } from './admin/admin.component';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { AdminComponent } from './admin/admin.component';
     AppRoutingModule
   ],
   providers: [
+    CustomerService,
     ProductService,
     ShoppingCartService
     ],
