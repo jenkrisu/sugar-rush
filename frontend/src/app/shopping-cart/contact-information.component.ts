@@ -13,13 +13,23 @@ import { LoginService } from '../shared/login.service';
 })
 export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
 
-  public firstName: String;
-  public lastName: String;
-  public street: String;
-  public postal: String;
-  public city: String;
-  public country: String;
-  public email: String;
+  canContinue: boolean;
+
+  firstNameError: boolean;
+  lastNameError: boolean;
+  streetError: boolean;
+  postalError: boolean;
+  cityError: boolean;
+  countryError: boolean;
+  emailError: boolean;
+
+  firstName: string;
+  lastName: string;
+  street: string;
+  postal: string;
+  city: string;
+  country: string;
+  email: string;
 
   private customer: Customer;
   private subscription: Subscription;
@@ -62,6 +72,70 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     this.firstName = this.customer.firstName;
     this.lastName = this.customer.lastName;
     this.email = this.customer.email;
+  }
+
+  continue() {
+
+    if (this.formIsValidated()) {
+      this.canContinue = true;
+
+    } else {
+      this.canContinue = false;
+    }
+
+  }
+
+  formIsValidated() {
+    let validated = true;
+
+    this.firstNameError = false;
+    this.lastNameError = false;
+    this.streetError = false;
+    this.cityError = false;
+    this.postalError = false;
+    this.countryError= false;
+    this.emailError = false;
+
+    if (this.firstName.length < 1) {
+      this.firstNameError = true;
+      validated = false;
+    }
+
+    if (this.lastName.length < 1) {
+      this.lastNameError = true;
+      validated = false;
+    }
+
+    if (this.street.length < 1) {
+      this.streetError = true;
+      validated = false;
+    }
+    
+    if (this.postal.length < 1) {
+      this.postalError = true;
+      validated = false;
+    }
+    if (this.city.length < 1) {
+      this.cityError = true;
+      validated = false;
+    }
+
+    if (this.country.length < 0) {
+      this.countryError = true;
+      validated = false;
+    }
+
+    if (!this.validateEmail(this.email)) {
+      this.emailError = true;
+      validated = false;
+    }
+
+    return validated;
+  }
+
+  validateEmail(email: string) {
+    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(email);
   }
 
 }
