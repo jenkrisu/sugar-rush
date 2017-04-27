@@ -6,7 +6,7 @@
         <i class="material-icons cart-icon">shopping_cart</i>
       </a>
       <span class="line"></span>
-      <a routerLink="/checkout">
+      <a routerLink="/contactinfo">
         <i class="material-icons cart-icon active-icon">home</i>
       </a>
       <span class="line-dotted"></span>
@@ -53,7 +53,7 @@
             <li>Get updates on stock situation</li>
             <li>Review products</li>
           </ul>
-          <button type="button" class="btn btn-info btn-block">Create Account</button>
+          <button routerLink="/register" type="button" class="btn btn-info btn-block">Create Account</button>
         </div>
       </div>
     </div>
@@ -118,7 +118,7 @@
               Order information is sent to this address.
             </small>
           </div>
-          <div *ngIf="!canContinue" class="alert alert-danger" role="alert">
+          <div *ngIf="cannotContinue" class="alert alert-danger" role="alert">
             <i class="material-icons info-icon">error_outline</i> Please fill out required fields.
           </div>
         </form>

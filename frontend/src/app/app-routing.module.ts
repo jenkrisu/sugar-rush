@@ -6,7 +6,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { CheckoutComponent } from './shopping-cart/contact-information.component';
+import { ContactInformationComponent } from './shopping-cart/contact-information.component';
 
 import { AdminComponent } from './admin/admin.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
     { path: 'products', component: ProductListComponent },
     { path: 'products/:id', component: ProductDetailComponent },
     { path: 'shoppingcart', component: ShoppingCartComponent },
-    { path: 'checkout', component: CheckoutComponent },
+    { path: 'contactinfo', component: ContactInformationComponent },
     { path: 'admin', component: AdminComponent },
     { path: 'register', component: RegistrationComponent },
     { path: '**', redirectTo: '', pathMatch: 'full'}

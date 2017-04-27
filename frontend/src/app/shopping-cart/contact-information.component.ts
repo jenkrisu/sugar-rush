@@ -9,11 +9,11 @@ import { LoginService } from '../shared/login.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './contact-information.component.html',
-  styleUrls: ['./contact-information.component.scss', './shopping-cart.component.scss']
+  styleUrls: ['./shopping-cart.component.scss']
 })
-export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
+export class ContactInformationComponent implements OnInit, OnDestroy, DoCheck {
 
-  canContinue: boolean;
+  cannotContinue: boolean;
 
   firstNameError: boolean;
   lastNameError: boolean;
@@ -77,10 +77,10 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   continue() {
 
     if (this.formIsValidated()) {
-      this.canContinue = true;
+      this.cannotContinue = false;
 
     } else {
-      this.canContinue = false;
+      this.cannotContinue = true;
     }
 
   }
