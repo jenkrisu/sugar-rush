@@ -14,7 +14,7 @@ public class Purchase {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private int Id;
 
     /**
      * Foreign key customer_id.
@@ -22,6 +22,21 @@ public class Purchase {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(nullable=false)
     private Customer customer;
+
+    /**
+     * Foreign key billing_address_id.
+     */
+    //@OneToOne(cascade=CascadeType.ALL)
+    //@JoinColumn(nullable=false)
+    //private Address billingAddress
+
+    /**
+     * Foreign key delivery_address_id.
+     */
+    //@OneToOne(cascade=CascadeType.ALL)
+    //@JoinColumn(nullable=false)
+    //private Address deliveryAddress
+
 
     /**
      * Datetime of addition.

@@ -19,18 +19,13 @@ public class Customer {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private int Id;
+
+    //TODO: Add address, one customer can have many addresses
+    //private Address address;
 
     private String firstName;
     private String lastName;
-    private String billingStreet;
-    private String billingPostal;
-    private String billingCity;
-    private String billingCountry;
-    private String deliveryStreet;
-    private String deliveryPostal;
-    private String deliveryCity;
-    private String deliveryCountry;
     private String email;
 
 }
