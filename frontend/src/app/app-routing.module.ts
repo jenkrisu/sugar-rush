@@ -9,6 +9,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './shopping-cart/contact-information.component';
 
 import { AdminComponent } from './admin/admin.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: 'shoppingcart', component: ShoppingCartComponent },
     { path: 'checkout', component: CheckoutComponent },
     { path: 'admin', component: AdminComponent },
+    { path: 'register', component: RegistrationComponent },
     { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 

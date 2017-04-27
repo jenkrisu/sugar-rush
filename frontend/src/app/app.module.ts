@@ -17,6 +17,7 @@ import { ProductService } from './shared/product.service';
 import { ShoppingCartService } from './shared/shopping-cart.service';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AdminComponent } from './admin/admin.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AdminComponent } from './admin/admin.component';
     ShoppingCartComponent,
     CheckoutComponent,
     AddProductComponent,
-    AdminComponent
+    AdminComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
