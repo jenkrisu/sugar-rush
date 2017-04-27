@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Address } from '../models/address';
 import { Customer } from '../models/customer';
 
-import { CustomerService } from '../shared/customer.service';
+import { LoginService } from '../shared/login.service';
 
 @Component({
   selector: 'app-checkout',
@@ -24,11 +24,11 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   private customer: Customer;
   private subscription: Subscription;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private loginService: LoginService) { }
 
   // Subscribe to Customer BehaviorSubject
   ngOnInit() {
-    this.subscription = this.customerService
+    this.subscription = this.loginService
       .getCustomer()
       .subscribe(item => this.customer = item);
     this.fillContactForm();
@@ -50,7 +50,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   updateCustomer() {
     const address = new Address(this.street, this.postal, this.city, this.country);
     let c = new Customer(address, this.firstName, this.lastName, this.email);
-    this.customerService.setCustomer(c);
+    this.loginService.setCustomer(c);
   }
 
   // Fill contact information form with previously inputted data
