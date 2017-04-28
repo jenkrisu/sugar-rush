@@ -45,9 +45,12 @@ export class ProductService {
   purchaseProducts(purchase: Purchase) {
     // TODO:
     // Check if there is token in storage -> user logged in -> add token to headers
-    const headers = new Headers({'Bearer': ''});
+    // Obs! Bearer tag can't be empty, else request fails on Edge browser.
+    const headers = new Headers({'Bearer': 'temppi'});
     const options = new RequestOptions({ headers: headers });
 
+    console.log(options)
+    console.log(purchase)
     return this.http.post('/api/purchases', purchase, options);
   }
 
