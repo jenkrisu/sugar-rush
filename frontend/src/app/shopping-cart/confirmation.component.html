@@ -87,10 +87,14 @@
     </div>
   </div>
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" id="error-messages">
     <div class="col-md-8">
-      <div *ngIf="outOfStock" class="alert alert-danger" role="alert">
-        <strong>Oh snap!</strong> Change a few things up and try submitting again.
+      <div *ngIf="productError" class="alert alert-danger" role="alert">
+        <i class="material-icons info-icon">error_outline</i> {{ productError }}
+        Please update your <a routerLink="/shoppingcart">Shopping Cart</a>.
+      </div>
+      <div *ngIf="vagueError" class="alert alert-danger" role="alert">
+        <i class="material-icons info-icon">error_outline</i> {{ vagueError }}
       </div>
     </div>
   </div>
