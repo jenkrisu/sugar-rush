@@ -24,10 +24,10 @@ public class Customer {
     /**
      * Customer's address foreign key address_id.
      * Billing address and default delivery address.
+     * One customer has one address.
      */
-
-    // @OneToMany(cascade = CascadeType.ALL)
-    // private Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     /**
      * First name of the customer.
