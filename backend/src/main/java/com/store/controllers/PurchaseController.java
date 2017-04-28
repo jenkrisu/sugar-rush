@@ -11,11 +11,11 @@ import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Created by Jenni on 24.4.2017.
@@ -54,7 +54,7 @@ public class PurchaseController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, value = "purchases/new")
-    public ResponseEntity<Purchase> update(@RequestBody NewCustomerContext context) {
+    public ResponseEntity<Purchase> update(@RequestBody PurchaseContext context) {
 
         String cartString = context.getCart();
         Cart cart;
@@ -75,7 +75,12 @@ public class PurchaseController {
         //Only persist changes to db once everything ok
 
         Customer customer = context.getCustomer();
-        Address delivery = context.getAddress();
+        Address billingAddress = customer.getAddress();
+        Address deliveryAddress = context.getDeliveryAddress();
+
+        System.out.println(customer.getFirstName());
+        System.out.println(billingAddress.getCity());
+        System.out.println(deliveryAddress.getCity());
 
         return new ResponseEntity<Purchase>(new Purchase(), HttpStatus.OK);
     }
@@ -87,7 +92,8 @@ public class PurchaseController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, value = "/purchases/existing")
-    public ResponseEntity<Purchase> update(@RequestBody ExistingCustomerContext context) {
+    public ResponseEntity<Purchase> update(@RequestHeader(value="Bearer") String token,
+                                           @RequestBody PurchaseContext context) {
         //TODO: Id of customer from token?
         return new ResponseEntity<Purchase>(new Purchase(), HttpStatus.OK);
     }
