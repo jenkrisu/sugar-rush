@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="row justify-content-center">
+  <div *ngIf="customer.firstName && customer.lastName && customer.address && customer.deliveryAddress" class="row justify-content-center">
     <div class="col-md-4">
       <h4>Billing Information</h4>
       <address>

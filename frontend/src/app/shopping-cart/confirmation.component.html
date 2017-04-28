@@ -59,7 +59,7 @@
     </div>
   </div>
 
-  <div class="row justify-content-center">
+  <div *ngIf="customer.firstName && customer.lastName && customer.address && customer.deliveryAddress" class="row justify-content-center">
     <div class="col-md-4">
       <h4 class="headline-confirmation">Billing Information</h4>
       <address>
@@ -88,7 +88,13 @@
   </div>
 
   <div class="row justify-content-center" id="error-messages">
-    <div class="col-md-8">
+    <div class="col-md-8">      
+      <div *ngIf="customerError" class="alert alert-danger" role="alert">
+        <i class="material-icons info-icon">error_outline</i> {{ customerError }}
+      </div>
+      <div *ngIf="cartError" class="alert alert-danger" role="alert">
+        <i class="material-icons info-icon">error_outline</i> {{ cartError }}
+      </div>
       <div *ngIf="productError" class="alert alert-danger" role="alert">
         <i class="material-icons info-icon">error_outline</i> {{ productError }}
         Please update your <a routerLink="/shoppingcart">Shopping Cart</a>.

@@ -27,26 +27,26 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
 
   loggedIn: false;
 
+  customerError: string;
+  cartError: string;
+  productError: string;
+  vagueError: string;
+
   constructor(private loginService: LoginService,
     private productService: ProductService,
     private shoppingCartService: ShoppingCartService,
     private router: Router) { }
 
 
- // Subscribe to customer information
- ngOnInit() {
+  // Subscribe to customer information
+  ngOnInit() {
     this.customerSubscription = this.loginService
       .getCustomer()
       .subscribe(item => this.customer = item);
 
-    //TODO
-    //this.loginSubscription = this.loginService
-    //  .getLoggedIn()
-    //  .subscribe(item => this.loggedIn = item);
-
     this.cartSubscription = this.shoppingCartService
-    .getShoppingCart()
-    .subscribe(item => this.cart = item);
+      .getShoppingCart()
+      .subscribe(item => this.cart = item);
   }
 
 
@@ -60,7 +60,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   getTotalPrice() {
     let total = 0;
     for (let i = 0; i < this.cart.items.length; i++) {
-      let pricePerOne= this.cart.items[i].product.price;
+      let pricePerOne = this.cart.items[i].product.price;
       let pricePerAll = this.cart.items[i].amount * pricePerOne;
       total += pricePerAll;
     }
@@ -75,22 +75,59 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   order() {
     const purchase = this.makePurchaseObject(this.customer, this.cart);
 
-    if (this.loggedIn) {
+    if (this.hasCustomerAndCart()) {
 
-
-    } else {
+      this.productError = '';
+      this.vagueError = '';
 
       this.productService.purchaseProducts(purchase)
         .subscribe(data => {
+          console.log("Data:")
           console.log(data)
         },
-          error => {
-            console.log(error);
-        }
-      );
-    }
-    
+        error => {
+          if (error.status === 404) {
 
+            if (error._body !== '') {
+              this.productError = error.json().message;
+            } else {
+              this.vagueError = 'Unfortunately an error occurred.';
+            }
+
+          } else {
+            this.vagueError = 'Unfortunately an error occurred.';
+          }
+
+          console.log(this.productError)
+          console.log(this.vagueError)
+          console.log("Error:");
+          console.log(error)
+        });
+
+    }
+  }
+
+  hasCustomerAndCart() {
+    let validated = true;
+
+    this.customerError = '';
+    this.cartError = '';
+
+    if (this.customer.firstName === undefined
+    || this.customer.lastName === undefined
+    || this.customer.email === undefined
+    || this.customer.address === undefined
+    || this.customer.deliveryAddress === undefined) {
+      this.customerError = 'Contact information is not filled out.';
+      validated = false;
+    }
+
+    if (this.cart.total < 1) {
+      this.cartError = 'No products in shopping cart.'
+      validated = false;
+    }
+
+    return validated;
   }
 
   // Send only product id and amount to backend
@@ -99,7 +136,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     let items: SimpleCartItem[] = [];
 
     for (let i = 0; i < length; i++) {
-      items.push(new SimpleCartItem(cart.items[i].product.id, cart.items[i].amount));
+      items.push(new SimpleCartItem(cart.items[i].product.id, cart.items[i].product.title, cart.items[i].amount));
     }
 
     const simpleCart = {
@@ -114,11 +151,11 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
 
   // Make purchase object
   makePurchaseObject(c: Customer, cart: Cart) {
-     const customer = new Customer(c.address, c.firstName, c.lastName, c.email);
-     const simpleCart = this.simplifyCart(cart);
-     const deliveryAddress = c.deliveryAddress;
-     const purchase = new Purchase (customer, simpleCart, deliveryAddress);
-     return purchase;
+    const customer = new Customer(c.address, c.firstName, c.lastName, c.email);
+    const simpleCart = this.simplifyCart(cart);
+    const deliveryAddress = c.deliveryAddress;
+    const purchase = new Purchase(customer, simpleCart, deliveryAddress);
+    return purchase;
   }
-  
+
 }
