@@ -22,7 +22,7 @@ public class Account {
     /**
      * Customer linked to the account
      */
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable=false)
     private Customer customer;
 

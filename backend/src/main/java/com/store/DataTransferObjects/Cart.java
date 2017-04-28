@@ -1,4 +1,4 @@
-package com.store.purchase;
+package com.store.DataTransferObjects;
 
 import lombok.Data;
 

@@ -3,7 +3,9 @@ package com.store.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,11 +24,10 @@ public class Customer {
     private int Id;
 
     /**
-     * Customer's address foreign key address_id.
-     * Billing address and default delivery address.
-     * One customer has one address.
+     * Foreign key address_id.
      */
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn
     private Address address;
 
     /**
@@ -52,5 +53,12 @@ public class Customer {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public Customer(String firstName, String lastName, String email, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
     }
 }

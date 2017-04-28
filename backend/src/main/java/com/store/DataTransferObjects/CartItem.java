@@ -1,4 +1,4 @@
-package com.store.purchase;
+package com.store.DataTransferObjects;
 
 import com.store.entities.Product;
 import lombok.Data;
@@ -14,6 +14,11 @@ public class CartItem {
      * Id of product.
      */
     private int id;
+
+    /**
+     * Title of product.
+     */
+    private String title;
 
     /**
      * Amount of products.

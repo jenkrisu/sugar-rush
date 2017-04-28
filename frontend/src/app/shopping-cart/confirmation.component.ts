@@ -114,10 +114,31 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     this.cartError = '';
 
     if (this.customer.firstName === undefined
-    || this.customer.lastName === undefined
-    || this.customer.email === undefined
-    || this.customer.address === undefined
-    || this.customer.deliveryAddress === undefined) {
+      || this.customer.lastName === undefined
+      || this.customer.email === undefined
+      || this.customer.address === undefined
+      || this.customer.address.street == undefined
+      || this.customer.address.city == undefined 
+      || this.customer.address.postal == undefined
+      || this.customer.address.country == undefined
+      || this.customer.deliveryAddress === undefined
+      || this.customer.deliveryAddress.city == undefined
+      || this.customer.deliveryAddress.street == undefined
+      || this.customer.deliveryAddress.postal == undefined
+      || this.customer.deliveryAddress.country == undefined) {
+      this.customerError = 'Contact information is not filled out.';
+      validated = false;
+    } else if (this.customer.firstName.length < 1
+      || this.customer.lastName.length < 1
+      || this.customer.email.length < 1
+      || this.customer.address.street.length < 1
+      || this.customer.address.city.length < 1
+      || this.customer.address.postal.length < 1
+      || this.customer.address.country.length < 1
+      || this.customer.deliveryAddress.city.length < 1
+      || this.customer.deliveryAddress.street.length < 1
+      || this.customer.deliveryAddress.postal.length < 1
+      || this.customer.deliveryAddress.country.length < 1) {
       this.customerError = 'Contact information is not filled out.';
       validated = false;
     }

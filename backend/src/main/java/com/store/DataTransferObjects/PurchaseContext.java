@@ -1,7 +1,5 @@
-package com.store.purchase;
+package com.store.DataTransferObjects;
 
-import com.store.entities.Address;
-import com.store.entities.Customer;
 import lombok.Data;
 
 /**
@@ -14,7 +12,7 @@ public class PurchaseContext {
     /**
      * Contains billing address.
      */
-    private Customer customer;
+    private CustomerDto customer;
     
     /**
      * Shopping cart.
@@ -24,6 +22,6 @@ public class PurchaseContext {
     /**
      * Delivery address.
      */
-    private Address deliveryAddress;
+    private AddressDto deliveryAddress;
 
 }

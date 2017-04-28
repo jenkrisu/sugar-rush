@@ -3,6 +3,8 @@ package com.store.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by Ville on 27.4.2017.
@@ -19,10 +21,10 @@ public class Address {
     private int id;
 
     /**
-     * Foreign key customer_id.
+     * Foreign key customer_id, only required if a customer with account.
      */
-    @ManyToOne
-    @JoinColumn(nullable=false)
+    @OneToOne
+    @JoinColumn
     private Customer customer;
 
     /**
@@ -46,6 +48,20 @@ public class Address {
     private String country;
 
     public Address() {
+    }
 
+    public Address(String street, String city, String postal, String country) {
+        this.street = street;
+        this.city = city;
+        this.postal = postal;
+        this.country = country;
+    }
+
+    public Address(String street, String city, String postal, String country, Customer customer) {
+        this.street = street;
+        this.city = city;
+        this.postal = postal;
+        this.country = country;
+        this.customer = customer;
     }
 }

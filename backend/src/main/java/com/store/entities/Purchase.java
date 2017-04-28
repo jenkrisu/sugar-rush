@@ -26,16 +26,16 @@ public class Purchase {
     /**
      * Foreign key billing_address_id.
      */
-    //@OneToOne(cascade=CascadeType.ALL)
-    //@JoinColumn(nullable=false)
-    //private Address billingAddress
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(nullable=false)
+    private Address billingAddress;
 
     /**
      * Foreign key delivery_address_id.
      */
-    //@OneToOne(cascade=CascadeType.ALL)
-    //@JoinColumn(nullable=false)
-    //private Address deliveryAddress
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(nullable=false)
+    private Address deliveryAddress;
 
 
     /**
@@ -60,6 +60,13 @@ public class Purchase {
     @PrePersist
     private void createdAt() {
         created = new Date();
+    }
+
+    public Purchase(Customer customer, Address billing, Address delivery, double price) {
+        this.customer = customer;
+        this.billingAddress = billing;
+        this.deliveryAddress = delivery;
+        this.price = price;
     }
 
 }

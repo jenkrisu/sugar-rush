@@ -13,4 +13,5 @@ public class NewAccountDto {
     private String role;
     private String firstName;
     private String lastName;
+
 }

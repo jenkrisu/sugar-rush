@@ -38,4 +38,12 @@ public class PurchaseRow {
      */
     private int amount;
 
+    public PurchaseRow() {}
+
+    public PurchaseRow(Purchase purchase, Product product, int amount) {
+        this.purchase = purchase;
+        this.product = product;
+        this.amount = amount;
+    }
+
 }

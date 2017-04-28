@@ -1,10 +1,9 @@
 package com.store.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.store.entities.Address;
-import com.store.entities.Customer;
-import com.store.entities.Purchase;
-import com.store.purchase.*;
+import com.store.ApiError;
+import com.store.DataTransferObjects.*;
+import com.store.entities.*;
 import com.store.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jenni on 24.4.2017.
@@ -23,6 +24,12 @@ import java.io.IOException;
 
 @RepositoryRestController
 public class PurchaseController {
+
+    @Autowired
+    /**
+     * Gets instance of AddresssRepository.
+     */
+    private AddressRepository addressRepository;
 
     /**
      * Gets instance of PurchaseRepository.
@@ -45,57 +52,135 @@ public class PurchaseController {
     /**
      * Gets instance of ProductRepository.
      */
+    @Autowired
     private ProductRepository productRepository;
 
     /**
-     * Adds new purchase for a new customer.
+     * Adds new purchase. If customer not logged in, value of Bearer is an empty string.
      *
      * @param context
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "purchases/new")
-    public ResponseEntity<Purchase> update(@RequestBody PurchaseContext context) {
-
+    @RequestMapping(method = RequestMethod.POST, value = "purchases")
+    public ResponseEntity<Object> update(@RequestHeader(value = "Bearer") String token,
+                                         @RequestBody PurchaseContext context) {
         String cartString = context.getCart();
-        Cart cart;
+        CustomerDto c = context.getCustomer();
+        AddressDto b = c.getAddress();
+        AddressDto d = context.getDeliveryAddress();
 
-        try {
-            cart = new ObjectMapper().readValue(cartString, Cart.class);
-            System.out.println(cart.getItems().size());
-            System.out.println(cart.getTotal());
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        if (cartString == null || c == null || b == null || d == null) {
+            ApiError error = new ApiError(HttpStatus.BAD_REQUEST.value(),
+                    "Invalid request.", context.getCart());
+            return new ResponseEntity<Object>(error, HttpStatus.BAD_REQUEST);
         }
 
-        //TODO: Check for each product id in cart whether there is enough stock
-        //Return error if not enough stock
-        //if enough stock, try to create billing and delivery addresses, try to create customer,
-        //try to create purchase, try to create purchase rows
-        //if all succeeds, make stock for products smaller
-        //Only persist changes to db once everything ok
+        // Try to parse string to Cart object
+        Cart cart;
+        try {
+            cart = new ObjectMapper().readValue(cartString, Cart.class);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            ApiError error = new ApiError(HttpStatus.BAD_REQUEST.value(),
+                    "Could not read shopping cart.", context.getCart());
+            return new ResponseEntity<Object>(error, HttpStatus.BAD_REQUEST);
+        }
 
-        Customer customer = context.getCustomer();
-        Address billingAddress = customer.getAddress();
-        Address deliveryAddress = context.getDeliveryAddress();
+        // Send response "Bad Request" if cart is empty
+        if (cart.getItems().size() == 0) {
+            ApiError error = new ApiError(HttpStatus.BAD_REQUEST.value(),
+                    "No items in shopping cart.", context.getCart());
+            return new ResponseEntity<Object>(error, HttpStatus.BAD_REQUEST);
+        }
 
-        System.out.println(customer.getFirstName());
-        System.out.println(billingAddress.getCity());
-        System.out.println(deliveryAddress.getCity());
+        // Confirm that there is enough stock, return 404 if not enough
+        for (int i = 0; i < cart.getItems().size(); i++) {
+            CartItem item = cart.getItems().get(i);
+            Product p = productRepository.findOne(item.getId());
 
-        return new ResponseEntity<Purchase>(new Purchase(), HttpStatus.OK);
+            if (p == null) {
+                ApiError error = new ApiError(HttpStatus.NOT_FOUND.value(),
+                        "Product " + item.getTitle() + " not found.", item);
+                return new ResponseEntity<Object>(error, HttpStatus.NOT_FOUND);
+            }
+
+            if (p.getStock() < item.getAmount()) {
+                ApiError error = new ApiError(HttpStatus.NOT_FOUND.value(),
+                        "Stock of " + item.getTitle() + " is " + p.getStock() + ".", item);
+                return new ResponseEntity<Object>(error, HttpStatus.NOT_FOUND);
+            }
+        }
+
+        // Save customer and addresses
+        // TODO: customer id from token
+        boolean newCustomer = true;
+
+        Customer customer;
+        if (newCustomer) {
+            customer = customerRepository
+                    .save(new Customer(c.getFirstName(), c.getLastName(), c.getEmail()));
+        } else {
+            int id = 1;
+            customer = customerRepository.findOne(id);
+        }
+
+        Address billing = addressRepository
+                .save(new Address(b.getStreet(), b.getCity(), b.getPostal(), b.getCountry(), customer));
+
+        Address delivery = addressRepository
+                .save(new Address(d.getStreet(), d.getCity(), d.getPostal(), d.getCountry(), customer));
+
+        // Create purchase
+        Purchase purchase = purchaseRepository
+                .save(new Purchase(customer, billing, delivery, calculatePurchasePrice(cart)));
+
+        for (int i = 0; i < cart.getItems().size(); i++) {
+            CartItem item = cart.getItems().get(i);
+            Product product = productRepository.findOne(item.getId());
+            purchaseRowRepository.save(new PurchaseRow(purchase, product, item.getAmount()));
+        }
+
+        // Decrease stock
+        decreaseStock(cart);
+
+        return new ResponseEntity<Object>(purchase, HttpStatus.OK);
     }
 
     /**
-     * Adds new purchase for an existing customer.
+     * Decrease stock according to purchase.
      *
-     * @param context
-     * @return
+     * @param cart
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/purchases/existing")
-    public ResponseEntity<Purchase> update(@RequestHeader(value="Bearer") String token,
-                                           @RequestBody PurchaseContext context) {
-        //TODO: Id of customer from token?
-        return new ResponseEntity<Purchase>(new Purchase(), HttpStatus.OK);
+    private void decreaseStock(Cart cart) {
+        int length = cart.getItems().size();
+        for (int i = 0; i < length; i++) {
+            CartItem item = cart.getItems().get(i);
+            Product p = productRepository.findOne(item.getId());
+            int newStock = p.getStock() - item.getAmount();
+            p.setStock(newStock);
+            productRepository.save(p);
+        }
+    }
+
+
+    /**
+     * Calculate purchase price.
+     *
+     * @param cart
+     * @return double price
+     */
+    private double calculatePurchasePrice(Cart cart) {
+        double price = 0;
+        int length = cart.getItems().size();
+
+        for (int i = 0; i < length; i++) {
+            CartItem item = cart.getItems().get(i);
+            Product p = productRepository.findOne(item.getId());
+            double factorial = p.getPrice() * item.getAmount();
+            price += factorial;
+        }
+
+        return price;
     }
 
 }
