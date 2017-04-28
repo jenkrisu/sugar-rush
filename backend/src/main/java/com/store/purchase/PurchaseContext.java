@@ -9,10 +9,21 @@ import lombok.Data;
  */
 
 @Data
-public class NewCustomerContext {
+public class PurchaseContext {
 
+    /**
+     * Contains billing address.
+     */
     private Customer customer;
+    
+    /**
+     * Shopping cart.
+     */
     private String cart;
-    private Address address;
+
+    /**
+     * Delivery address.
+     */
+    private Address deliveryAddress;
 
 }
