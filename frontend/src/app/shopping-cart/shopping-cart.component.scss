@@ -21,3 +21,60 @@
 .bottom-navigation {
   margin-top: 20px;
 }
+
+h3 {
+  margin-bottom: 40px;
+}
+
+/* Styles for contact information */
+.rounded-border {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.create-account {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.order-options-divider {
+  margin: 15px auto;
+}
+
+.info-icon, .confirmation-icon {
+  height: 28px;
+  vertical-align: middle;
+}
+
+.confirmation-icon {
+  color: rgba(0, 0, 0, 0.7);
+  margin-right: 10px;
+}
+
+h5 {
+  margin: 5px auto 20px auto;
+}
+
+.bill-icon {
+  font-size: 40px;
+  margin: 0 15px;
+}
+
+.payment-input {  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.list-group {
+  margin-bottom: 20px;
+}
+
+.iconless {
+  margin-left: 38px;
+}
+
+h4 {
+  margin: 20px 0;
+}

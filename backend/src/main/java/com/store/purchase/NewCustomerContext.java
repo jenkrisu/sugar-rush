@@ -1,5 +1,6 @@
 package com.store.purchase;
 
+import com.store.entities.Address;
 import com.store.entities.Customer;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ import lombok.Data;
 public class NewCustomerContext {
 
     private Customer customer;
-    private Cart cart;
+    private String cart;
+    private Address address;
 
 }

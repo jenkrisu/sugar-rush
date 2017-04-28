@@ -1,5 +1,8 @@
 package com.store.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.store.entities.Address;
+import com.store.entities.Customer;
 import com.store.entities.Purchase;
 import com.store.purchase.*;
 import com.store.repositories.*;
@@ -10,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by Jenni on 24.4.2017.
@@ -43,29 +49,46 @@ public class PurchaseController {
 
     /**
      * Adds new purchase for a new customer.
+     *
      * @param context
      * @return
      */
-    // localhost:8080/api/purchases/new
-    // { "customer": {"firstName": "", "lastName": "", "billingStreet": "", "billingPostal": "", "billingCity": "", "billingCountry": "", "deliveryStreet": "", "deliveryPostal": "", "deliveryCity": "", "deliveryCountry": "", "email": "jou"}, "cart": {"items": "{\"something\": \"something\"}", "total": 8} }
     @RequestMapping(method = RequestMethod.POST, value = "purchases/new")
     public ResponseEntity<Purchase> update(@RequestBody NewCustomerContext context) {
-        System.out.println(context.getCustomer().getEmail());
+
+        String cartString = context.getCart();
+        Cart cart;
+
+        try {
+            cart = new ObjectMapper().readValue(cartString, Cart.class);
+            System.out.println(cart.getItems().size());
+            System.out.println(cart.getTotal());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        //TODO: Check for each product id in cart whether there is enough stock
+        //Return error if not enough stock
+        //if enough stock, try to create billing and delivery addresses, try to create customer,
+        //try to create purchase, try to create purchase rows
+        //if all succeeds, make stock for products smaller
+        //Only persist changes to db once everything ok
+
+        Customer customer = context.getCustomer();
+        Address delivery = context.getAddress();
+
         return new ResponseEntity<Purchase>(new Purchase(), HttpStatus.OK);
     }
 
     /**
      * Adds new purchase for an existing customer.
+     *
      * @param context
      * @return
      */
-    // localhost:8080/api/purchases/old
-    // { "id": 1, "cart": {"items": "{\"something\": \"something\"}", "total": 8} }
-    @RequestMapping(method = RequestMethod.POST, value = "/purchases/old")
+    @RequestMapping(method = RequestMethod.POST, value = "/purchases/existing")
     public ResponseEntity<Purchase> update(@RequestBody ExistingCustomerContext context) {
-        String items = context.getCart().getItems();
-        int amount = context.getCart().getTotal();
-        System.out.println(items + "," + amount);
+        //TODO: Id of customer from token?
         return new ResponseEntity<Purchase>(new Purchase(), HttpStatus.OK);
     }
 

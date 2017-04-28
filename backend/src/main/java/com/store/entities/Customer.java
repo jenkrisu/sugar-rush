@@ -21,10 +21,11 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
-    //TODO: Add address, one customer can have many addresses
     /**
      * Customer's address foreign key address_id.
+     * Billing address and default delivery address.
      */
+
     // @OneToMany(cascade = CascadeType.ALL)
     // private Address address;
 

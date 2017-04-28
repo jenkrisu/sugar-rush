@@ -6,19 +6,25 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { ProductCardComponent } from './product-card/product.component';
-import { ProductListComponent } from './product-list/product-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { RegistrationComponent } from './registration/registration.component';
+
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductCardComponent } from './product-card/product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { CheckoutComponent } from './shopping-cart/contact-information.component';
+import { ContactInformationComponent } from './shopping-cart/contact-information.component';
+import { PaymentComponent } from './shopping-cart/payment.component';
+import { ConfirmationComponent } from './shopping-cart/confirmation.component';
+
+import { AdminComponent } from './admin/admin.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 import { ProductService } from './shared/product.service';
 import { ShoppingCartService } from './shared/shopping-cart.service';
-import { AddProductComponent } from './add-product/add-product.component';
-import { AdminComponent } from './admin/admin.component';
-import { RegistrationComponent } from './registration/registration.component';
 import { LoginService } from './shared/login.service';
+
 
 @NgModule({
   declarations: [
@@ -28,10 +34,12 @@ import { LoginService } from './shared/login.service';
     HomePageComponent,
     ProductDetailComponent,
     ShoppingCartComponent,
-    CheckoutComponent,
+    ContactInformationComponent,
     AddProductComponent,
     AdminComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    PaymentComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

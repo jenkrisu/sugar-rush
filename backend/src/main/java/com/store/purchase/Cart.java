@@ -1,19 +1,23 @@
 package com.store.purchase;
+
 import lombok.Data;
 
 import java.util.List;
 
 /**
- * Created by Jenni on 24.4.2017.
+ * Created by Jenni on 28.4.2017.
  */
 @Data
 public class Cart {
 
-    private String items;
+    /**
+     * List of cart items.
+     */
+    private List<CartItem> items;
+
+    /**
+     * Total amount of items.
+     */
     private int total;
-
-    public Cart() {
-
-    }
 
 }
