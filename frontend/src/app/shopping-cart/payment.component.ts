@@ -18,7 +18,7 @@ export class PaymentComponent implements OnInit {
   }
 
   continue() {
-    this.router.navigate(['/confirmation']);
+    this.router.navigate(['/shoppingcart/confirmation']);
   }
 
 }

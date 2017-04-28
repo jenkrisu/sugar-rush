@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Address } from '../models/address';
@@ -31,8 +30,7 @@ export class ShippingComponent implements OnInit {
   deliveryPostal: string;
   deliveryCity: string;
 
-  constructor(private loginService: LoginService,
-    private router: Router) { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
     this.customerSubscription = this.loginService

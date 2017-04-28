@@ -12,6 +12,7 @@ import { ContactInformationComponent } from './shopping-cart/contact-information
 import { ShippingComponent } from './shopping-cart/shipping.component';
 import { PaymentComponent } from './shopping-cart/payment.component';
 import { ConfirmationComponent } from './shopping-cart/confirmation.component';
+import { SuccessComponent } from './shopping-cart/success.component';
 
 import { AdminComponent } from './admin/admin.component';
 
@@ -21,10 +22,11 @@ const routes: Routes = [
     { path: 'products', component: ProductListComponent },
     { path: 'products/:id', component: ProductDetailComponent },
     { path: 'shoppingcart', component: ShoppingCartComponent },
-    { path: 'contactinfo', component: ContactInformationComponent },
-    { path: 'shipping', component: ShippingComponent },
-    { path: 'confirmation', component: ConfirmationComponent },
-    { path: 'payment', component: PaymentComponent },
+    { path: 'shoppingcart/contactinfo', component: ContactInformationComponent },
+    { path: 'shoppingcart/shipping', component: ShippingComponent },
+    { path: 'shoppingcart/confirmation', component: ConfirmationComponent },
+    { path: 'shoppingcart/payment', component: PaymentComponent },
+    { path: 'shoppingcart/success', component: SuccessComponent },
     { path: 'admin', component: AdminComponent },
     { path: '**', redirectTo: '', pathMatch: 'full'}
 ];

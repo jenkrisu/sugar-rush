@@ -97,7 +97,7 @@ export class ContactInformationComponent implements OnInit, OnDestroy, DoCheck {
 
     if (this.formIsValidated()) {
       this.cannotContinue = false;
-      this.router.navigate(['/shipping']);
+      this.router.navigate(['/shoppingcart/shipping']);
 
     } else {
       this.cannotContinue = true;
