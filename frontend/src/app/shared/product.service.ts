@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -43,14 +43,12 @@ export class ProductService {
 
   // Purchasing products as new customer
   purchaseProducts(purchase: Purchase) {
-     return this.http.post("/api/purchases/new", purchase);
-  }
-
-  // Purchasing products as old custome
-  purchaseProductsLoggedIn(purchase: Purchase) {
     // TODO:
-    // Id as header?
-    return this.http.post("/api/purchases/existing", purchase);
+    // Check if there is token in storage -> user logged in -> add token to headers
+    const headers = new Headers({'Bearer': ''});
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http.post('/api/purchases', purchase, options);
   }
 
 }
