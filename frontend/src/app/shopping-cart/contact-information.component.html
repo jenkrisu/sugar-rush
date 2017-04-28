@@ -32,7 +32,7 @@
     <!-- Login -->
     <div *ngIf="!loggedIn" class="col-md-4">
       <div class="rounded-border">
-        <h5>Login to Order</h5>
+        <h4 class="headline-order-form">Login to Order</h4>
         <form>
           <div class="form-group">
             <label for="email">Email</label>
@@ -64,8 +64,8 @@
 
     <div [class.col-md-4]="!loggedIn" [class.col-md-6]="loggedIn">
       <div class="rounded-border">
-        <h5 *ngIf="!loggedIn">Order without Account</h5>
-        <h5 *ngIf="loggedIn">Fillout Order Information</h5>
+        <h4 *ngIf="!loggedIn" class="headline-order-form">Order without Account</h4>
+        <h4 *ngIf="loggedIn" class="headline-order-form">Fillout Order Information</h4>
 
         <div class="alert alert-info" role="alert">
           <i class="material-icons info-icon">info_outline</i> Fields with asterisk (*) are required.
@@ -114,6 +114,7 @@
             <label>Email*</label>
             <input name="email" [(ngModel)]="email" type="email" class="form-control form-control-danger">
             <div *ngIf="emailError" class="form-control-feedback">Invalid email.</div>
+            <small class="text-muted">Order information is sent to this email.</small>
           </div>
           <div *ngIf="cannotContinue" class="alert alert-danger" role="alert">
             <i class="material-icons info-icon">error_outline</i> Please fill out required fields.
