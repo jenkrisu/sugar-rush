@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Account {
 
     /**
-     * Account id.
+     * NewAccountDto id.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Account {
     /**
      * Customer linked to the account
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable=false)
     private Customer customer;
 
@@ -40,4 +40,15 @@ public class Account {
      * Role of the account.
      */
     private String role;
+
+    public Account() {
+
+    }
+
+    public Account(Customer customer, String email, String password, String role) {
+        this.customer = customer;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 }

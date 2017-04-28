@@ -25,9 +25,8 @@ public class Customer {
     /**
      * Customer's address foreign key address_id.
      */
-    @OneToMany
-    @JoinColumn(nullable=false)
-    private Address address;
+    // @OneToMany(cascade = CascadeType.ALL)
+    // private Address address;
 
     /**
      * First name of the customer.
@@ -44,4 +43,13 @@ public class Customer {
      */
     private String email;
 
+    public Customer() {
+
+    }
+
+    public Customer(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 }
