@@ -1,5 +1,6 @@
 package com.store.purchase;
 
+import com.store.entities.Product;
 import lombok.Data;
 
 /**
@@ -9,7 +10,14 @@ import lombok.Data;
 @Data
 public class CartItem {
 
-    private int productId;
-    private int productAmount;
+    /**
+     * Id of product.
+     */
+    private int id;
+
+    /**
+     * Amount of products.
+     */
+    private int amount;
 
 }
