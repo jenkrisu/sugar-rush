@@ -13,7 +13,7 @@ public class ExistingCustomerContext {
     /**
      * Shopping cart.
      */
-    private Cart cart;
+    private String cart;
 
     /**
      * Delivery address.

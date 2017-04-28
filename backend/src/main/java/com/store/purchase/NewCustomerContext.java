@@ -12,7 +12,7 @@ import lombok.Data;
 public class NewCustomerContext {
 
     private Customer customer;
-    private Cart cart;
-    private Address delivery;
+    private String cart;
+    private Address address;
 
 }
