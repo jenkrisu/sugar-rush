@@ -25,7 +25,7 @@ public class Customer {
      * Customer's address foreign key address_id.
      * Billing address and default delivery address.
      */
-    @OneToMany
+    @OneToOne
     @JoinColumn(nullable=false)
     private Address address;
 
