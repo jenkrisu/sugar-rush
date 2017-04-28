@@ -75,6 +75,10 @@ export class ContactInformationComponent implements OnInit, OnDestroy, DoCheck {
   updateCustomer() {
     const address = new Address(this.street, this.postal, this.city, this.country);
     let c = new Customer(address, this.firstName, this.lastName, this.email);
+
+    const deliveryAddress = new Address(address.street, address.postal, address.city, address.country);
+    c.deliveryAddress = deliveryAddress;
+    
     this.loginService.setCustomer(c);
   }
 
@@ -93,7 +97,7 @@ export class ContactInformationComponent implements OnInit, OnDestroy, DoCheck {
 
     if (this.formIsValidated()) {
       this.cannotContinue = false;
-      this.router.navigate(['/payment']);
+      this.router.navigate(['/shipping']);
 
     } else {
       this.cannotContinue = true;

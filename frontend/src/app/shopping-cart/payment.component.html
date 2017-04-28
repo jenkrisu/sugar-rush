@@ -10,6 +10,10 @@
         <i class="material-icons cart-icon">home</i>
       </a>
       <span class="line"></span>
+      <a routerLink="/shipping">
+        <i class="material-icons cart-icon">local_shipping</i>
+      </a>
+      <span class="line"></span>
       <a routerLink="/payment">
         <i class="material-icons cart-icon active-icon">credit_card</i>
       </a>
@@ -37,7 +41,7 @@
 
   <div class="row justify-content-center bottom-navigation">
     <div class="col-6 col-md-3">
-      <button routerLink="/contactinfo" type="button" class="btn btn-secondary">Previous</button>
+      <button routerLink="/shipping" type="button" class="btn btn-secondary">Previous</button>
     </div>
     <div class="col-6 col-md-3 text-right">
       <button (click)="continue()" type="button" class="btn btn-primary">Continue</button>

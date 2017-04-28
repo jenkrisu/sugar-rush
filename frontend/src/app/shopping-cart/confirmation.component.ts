@@ -2,9 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Cart } from '../models/cart';
 import { Address } from '../models/address';
+import { Cart } from '../models/cart';
 import { Customer } from '../models/customer';
+import { Purchase } from '../models/purchase';
+import { SimpleCartItem } from '../models/simple-cart-item';
 
 import { LoginService } from '../shared/login.service';
 import { ProductService } from '../shared/product.service';
@@ -71,13 +73,14 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   }
 
   order() {
-    if (this.loggedIn) {
+    const purchase = this.makePurchaseObject(this.customer, this.cart);
 
+    if (this.loggedIn) {
 
 
     } else {
 
-      this.productService.purchaseProducts(this.customer, this.cart)
+      this.productService.purchaseProducts(purchase)
         .subscribe(data => {
           console.log(data)
         },
@@ -88,6 +91,34 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     }
     
 
+  }
+
+  // Send only product id and amount to backend
+  simplifyCart(cart: Cart) {
+    const length = cart.items.length;
+    let items: SimpleCartItem[] = [];
+
+    for (let i = 0; i < length; i++) {
+      items.push(new SimpleCartItem(cart.items[i].product.id, cart.items[i].amount));
+    }
+
+    const simpleCart = {
+      items: items,
+      total: cart.total
+    }
+
+    const stringifiedCart = JSON.stringify(simpleCart);
+
+    return stringifiedCart;
+  }
+
+  // Make purchase object
+  makePurchaseObject(c: Customer, cart: Cart) {
+     const customer = new Customer(c.address, c.firstName, c.lastName, c.email);
+     const simpleCart = this.simplifyCart(cart);
+     const deliveryAddress = c.deliveryAddress;
+     const purchase = new Purchase (customer, simpleCart, deliveryAddress);
+     return purchase;
   }
   
 }

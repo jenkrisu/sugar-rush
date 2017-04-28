@@ -6,6 +6,7 @@ export class Customer {
     firstName: string;
     lastName: string;
     email: string;
+    deliveryAddress: Address;
 
     constructor(address: Address, firstName: string, lastName: string, email: string) {
         this.address = address;

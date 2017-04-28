@@ -73,8 +73,14 @@ h3 {
 
 .iconless {
   margin-left: 38px;
+  margin-bottom: 5px;
+  display: inline-block !important;
 }
 
 .headline-confirmation {
   margin: 20px 0;
+}
+
+#shippingForm {
+  margin-top: 20px;
 }
