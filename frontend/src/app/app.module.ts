@@ -15,6 +15,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ContactInformationComponent } from './shopping-cart/contact-information.component';
+import { ShippingComponent } from './shopping-cart/shipping.component';
 import { PaymentComponent } from './shopping-cart/payment.component';
 import { ConfirmationComponent } from './shopping-cart/confirmation.component';
 
@@ -39,7 +40,8 @@ import { LoginService } from './shared/login.service';
     AdminComponent,
     RegistrationComponent,
     PaymentComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    ShippingComponent
   ],
   imports: [
     BrowserModule,

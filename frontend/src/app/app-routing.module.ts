@@ -9,6 +9,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ContactInformationComponent } from './shopping-cart/contact-information.component';
+import { ShippingComponent } from './shopping-cart/shipping.component';
 import { PaymentComponent } from './shopping-cart/payment.component';
 import { ConfirmationComponent } from './shopping-cart/confirmation.component';
 
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'products/:id', component: ProductDetailComponent },
     { path: 'shoppingcart', component: ShoppingCartComponent },
     { path: 'contactinfo', component: ContactInformationComponent },
+    { path: 'shipping', component: ShippingComponent },
     { path: 'confirmation', component: ConfirmationComponent },
     { path: 'payment', component: PaymentComponent },
     { path: 'admin', component: AdminComponent },
