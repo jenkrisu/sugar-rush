@@ -44,4 +44,8 @@ public class Address {
      * Country of the address.
      */
     private String country;
+
+    public Address() {
+
+    }
 }
