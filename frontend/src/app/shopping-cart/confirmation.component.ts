@@ -7,6 +7,7 @@ import { Address } from '../models/address';
 import { Customer } from '../models/customer';
 
 import { LoginService } from '../shared/login.service';
+import { ProductService } from '../shared/product.service';
 import { ShoppingCartService } from '../shared/shopping-cart.service';
 
 @Component({
@@ -22,7 +23,10 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   private cartSubscription: Subscription;
   cart: Cart;
 
+  loggedIn: false;
+
   constructor(private loginService: LoginService,
+    private productService: ProductService,
     private shoppingCartService: ShoppingCartService,
     private router: Router) { }
 
@@ -32,6 +36,11 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     this.customerSubscription = this.loginService
       .getCustomer()
       .subscribe(item => this.customer = item);
+
+    //TODO
+    //this.loginSubscription = this.loginService
+    //  .getLoggedIn()
+    //  .subscribe(item => this.loggedIn = item);
 
     this.cartSubscription = this.shoppingCartService
     .getShoppingCart()
@@ -59,6 +68,26 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   // Round price of product
   roundPrice(price: number) {
     return Math.round(price * 100) / 100;
+  }
+
+  order() {
+    if (this.loggedIn) {
+
+
+
+    } else {
+
+      this.productService.purchaseProducts(this.customer, this.cart)
+        .subscribe(data => {
+          console.log(data)
+        },
+          error => {
+            console.log(error);
+        }
+      );
+    }
+    
+
   }
   
 }

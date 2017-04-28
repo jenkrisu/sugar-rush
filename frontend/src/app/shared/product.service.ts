@@ -4,9 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { Cart } from '../models/cart';
+import { SimpleCartItem } from '../models/simple-cart-item';
 import { Customer } from '../models/customer';
 import { Address } from '../models/address';
 import { Product } from '../models/product';
+
 
 @Injectable()
 export class ProductService {
@@ -44,7 +46,8 @@ export class ProductService {
 
   // Purchasing products as new customer
   purchaseProducts(customer: Customer, cart: Cart) {
-     let stringifiedCart = this.stringifyCart(cart);
+     const simpleCart = this.simplifyCart(cart);
+     const stringifiedCart = JSON.stringify(simpleCart);
      
      // TODO: Delivery address would be different if user is selected different delivery address
      let deliveryAddress = new Address(customer.address.street, customer.address.city, customer.address.postal, customer.address.country);
@@ -55,14 +58,15 @@ export class ProductService {
        address: deliveryAddress
      }
 
-     return this.http.post("/api/purchase/new", purchase);
+     return this.http.post("/api/purchases/new", purchase);
   }
 
   // Purchasing products as old custome
   purchaseProductsLoggedIn(customer: Customer, cart: Cart) {
     // TODO:
     // Id as header?
-    let stringifiedCart = this.stringifyCart(cart);
+    const simpleCart = this.simplifyCart(cart);
+    const stringifiedCart = JSON.stringify(simpleCart);
      
     // TODO: Delivery address would be different if user is selected different delivery address
     let deliveryAddress = new Address(customer.address.street, customer.address.city, customer.address.postal, customer.address.country);
@@ -72,16 +76,23 @@ export class ProductService {
       address: deliveryAddress
     }
 
-    return this.http.post("/api/purchase/old", purchase);
+    return this.http.post("/api/purchases/existing", purchase);
   }
 
-  stringifyCart(cart: Cart) {
-     let stringifiedItems = JSON.stringify(cart.items);
-     let stringifiedCart = {
-       items: stringifiedItems,
-       total: cart.total
-     }
-     return stringifiedCart;
+  simplifyCart(cart: Cart) {
+    const length = cart.items.length;
+    let items: SimpleCartItem[] = [];
+
+    for (let i = 0; i < length; i++) {
+      items.push(new SimpleCartItem(cart.items[i].product.id, cart.items[i].amount));
+    }
+
+    const simpleCart = {
+      items: items,
+      total: cart.total
+    }
+
+    return simpleCart;
   }
 
 }
