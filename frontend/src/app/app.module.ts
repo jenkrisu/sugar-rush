@@ -18,6 +18,7 @@ import { ContactInformationComponent } from './shopping-cart/contact-information
 import { ShippingComponent } from './shopping-cart/shipping.component';
 import { PaymentComponent } from './shopping-cart/payment.component';
 import { ConfirmationComponent } from './shopping-cart/confirmation.component';
+import { SuccessComponent } from './shopping-cart/success.component';
 
 import { AdminComponent } from './admin/admin.component';
 import { AddProductComponent } from './add-product/add-product.component';
@@ -25,6 +26,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ProductService } from './shared/product.service';
 import { ShoppingCartService } from './shared/shopping-cart.service';
 import { LoginService } from './shared/login.service';
+
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { LoginService } from './shared/login.service';
     RegistrationComponent,
     PaymentComponent,
     ConfirmationComponent,
-    ShippingComponent
+    ShippingComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,

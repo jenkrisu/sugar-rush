@@ -25,6 +25,11 @@ export class ShoppingCartService {
     return this.cart;
   }
 
+  // Set value to ShoppingCart
+  emptyShoppingCart() {
+    this.saveCart(new Cart([], 0));
+  }
+
   // Return BehaviorSubject for Subscription
   getCustomer() {
     return this.customer;

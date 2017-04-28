@@ -82,8 +82,11 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
 
       this.productService.purchaseProducts(purchase)
         .subscribe(data => {
-          console.log("Data:")
-          console.log(data)
+          
+          this.shoppingCartService.emptyShoppingCart();
+          this.router.navigate(['/shoppingcart/success']);
+          
+
         },
         error => {
           if (error.status === 404) {
@@ -97,11 +100,6 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
           } else {
             this.vagueError = 'Unfortunately an error occurred.';
           }
-
-          console.log(this.productError)
-          console.log(this.vagueError)
-          console.log("Error:");
-          console.log(error)
         });
 
     }
