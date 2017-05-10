@@ -1,0 +1,50 @@
+<div class="container clear-navbar">
+  <!-- Show stepper -->
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center cart-icons">
+      <a routerLink="/shoppingcart">
+        <i class="material-icons cart-icon">shopping_cart</i>
+      </a>
+      <span class="line"></span>
+      <a routerLink="/shoppingcart/contactinfo">
+        <i class="material-icons cart-icon">home</i>
+      </a>
+      <span class="line"></span>
+      <a routerLink="/shoppingcart/shipping">
+        <i class="material-icons cart-icon">local_shipping</i>
+      </a>
+      <span class="line"></span>
+      <a routerLink="/shoppingcart/payment">
+        <i class="material-icons cart-icon active-icon">credit_card</i>
+      </a>
+      <span class="line-dotted"></span>
+      <i class="material-icons cart-icon">done</i>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h3 class="text-center">Payment Method</h3>
+
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action" (click)="chooseMethod($event)">
+          <input class="payment-input" type="radio" checked>
+          <i class="material-icons bill-icon">description</i> Billing
+        </a>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="row justify-content-center bottom-navigation">
+    <div class="col-6 col-md-3">
+      <button routerLink="/shoppingcart/shipping" type="button" class="btn btn-secondary">Previous</button>
+    </div>
+    <div class="col-6 col-md-3 text-right">
+      <button (click)="continue()" type="button" class="btn btn-primary">Continue</button>
+    </div>
+  </div>
+</div>

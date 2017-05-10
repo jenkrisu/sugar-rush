@@ -27,7 +27,8 @@ export class AddProductComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[0-9]*$')
       ])*/),
-      image: this.formBuilder.control('')
+      image: this.formBuilder.control(''),
+      categories: this.formBuilder.control('')
     });
   }
 

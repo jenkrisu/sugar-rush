@@ -3,7 +3,9 @@ package com.store.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,18 +21,44 @@ public class Customer {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private int Id;
 
+    /**
+     * Foreign key address_id.
+     */
+    @OneToOne
+    @JoinColumn
+    private Address address;
+
+    /**
+     * First name of the customer.
+     */
     private String firstName;
+
+    /**
+     * Last name of the customer.
+     */
     private String lastName;
-    private String billingStreet;
-    private String billingPostal;
-    private String billingCity;
-    private String billingCountry;
-    private String deliveryStreet;
-    private String deliveryPostal;
-    private String deliveryCity;
-    private String deliveryCountry;
+
+    /**
+     * Email of the customer.
+     */
     private String email;
 
+    public Customer() {
+
+    }
+
+    public Customer(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public Customer(String firstName, String lastName, String email, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+    }
 }

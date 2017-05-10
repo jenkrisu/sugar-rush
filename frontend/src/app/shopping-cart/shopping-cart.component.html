@@ -8,6 +8,8 @@
       <span class="line-dotted"></span>
       <i class="material-icons cart-icon">home</i>
       <span class="line-dotted"></span>
+      <i class="material-icons cart-icon">local_shipping</i>
+      <span class="line-dotted"></span>
       <i class="material-icons cart-icon">credit_card</i>
       <span class="line-dotted"></span>
       <i class="material-icons cart-icon">done</i>
@@ -18,7 +20,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8 text-center">
-      <h4>Shopping Cart</h4>
+      <h3>Shopping Cart</h3>
       <!-- If no products -->
       <p *ngIf="cart.items.length === 0">No products in cart. Browse <a routerLink="/products">products</a>.</p>
     </div>
@@ -72,7 +74,7 @@
   </div>
   <div *ngIf="cart.items.length > 0" class="row justify-content-center">
     <div class="col-md-8 text-right">
-      <button routerLink="/checkout" type="button" class="btn btn-primary">Continue</button>
+      <button routerLink="/shoppingcart/contactinfo" type="button" class="btn btn-primary">Continue</button>
     </div>
   </div>
 </div>

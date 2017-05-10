@@ -24,6 +24,7 @@ export class AdminComponent implements OnInit {
     "created": null
   };
   form;
+  productAmount;
 
   constructor(private productService: ProductService,
               private formBuilder: FormBuilder) { }
@@ -63,6 +64,7 @@ export class AdminComponent implements OnInit {
       .subscribe(products => {
           console.log(products);
           this.products = products;
+          this.productAmount = products.length;
         },
         err => {
           console.log(err);

@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
+
+  title: string;
+
   public activeId: number;
   public modalMessage: string;
   public modalTitle: string;
@@ -33,6 +36,7 @@ export class ProductListComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
+    this.title = 'New Arrivals';
     this.setSearchHint();
     this.searchTitle = true;
     this.searchDesc = true;
@@ -83,6 +87,7 @@ export class ProductListComponent implements OnInit {
   // Show only new products
   showNew(event: any) {
     event.preventDefault();
+    this.title = 'New Arrivals';
     this.activeId = 1;
     this.newProducts();
   }
@@ -90,6 +95,7 @@ export class ProductListComponent implements OnInit {
   // Show all products
   showAll(event: any) {
     event.preventDefault();
+    this.title = 'All Chocolates';
     this.activeId = 2;
     this.setSearchHint();
     this.shownProducts = this.products;
@@ -99,6 +105,7 @@ export class ProductListComponent implements OnInit {
   // Show chocolate bars
   showBars(event:any) {
     event.preventDefault();
+    this.title = 'Chocolate Bars';
     this.activeId = 3;
     this.setSearchHint();
     this.shownProducts = this.products.filter(item => item.categories.includes('bar'));
@@ -108,6 +115,7 @@ export class ProductListComponent implements OnInit {
   // Show truffle delights
   showTruffles(event:any) {
     event.preventDefault();
+    this.title = 'Truffle Delights';
     this.activeId = 3;
     this.setSearchHint();
     this.shownProducts = this.products.filter(item => item.categories.includes('truffle'));
@@ -117,6 +125,7 @@ export class ProductListComponent implements OnInit {
   // Show chocolate rounds
   showRounds(event:any) {
     event.preventDefault();
+    this.title = 'Chocolate Rounds';
     this.activeId = 3;
     this.setSearchHint();
     this.shownProducts = this.products.filter(item => item.categories.includes('round'));

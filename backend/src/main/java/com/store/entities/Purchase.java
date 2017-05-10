@@ -14,14 +14,29 @@ public class Purchase {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private int Id;
 
     /**
      * Foreign key customer_id.
      */
-    @OneToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(nullable=false)
     private Customer customer;
+
+    /**
+     * Foreign key billing_address_id.
+     */
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(nullable=false)
+    private Address billingAddress;
+
+    /**
+     * Foreign key delivery_address_id.
+     */
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(nullable=false)
+    private Address deliveryAddress;
+
 
     /**
      * Datetime of addition.
@@ -45,6 +60,13 @@ public class Purchase {
     @PrePersist
     private void createdAt() {
         created = new Date();
+    }
+
+    public Purchase(Customer customer, Address billing, Address delivery, double price) {
+        this.customer = customer;
+        this.billingAddress = billing;
+        this.deliveryAddress = delivery;
+        this.price = price;
     }
 
 }

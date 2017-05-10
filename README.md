@@ -12,3 +12,15 @@ Sweet Tooth Boutique is an online store that sells a selected assortment of conf
  * Update project dependencies
 #### 4. backend
  * Run `mvn package` and UBER-JAR is created to backend/target
+### Heroku Deployment
+From [Heroku instructions](https://devcenter.heroku.com/articles/deploying-executable-jar-files) for deploying executable jars.
+#### Using the Heroku Deploy CLI plugin
+Install plugin and create app to Heroku.  
+`heroku plugins:install heroku-cli-deploy`  
+`heroku create sweet-tooth-boutique --no-remote`
+
+Deploy jar file, see that it's running, and open website.  
+`heroku deploy:jar app.jar`  
+`heroku logs`  
+`heroku open`
+

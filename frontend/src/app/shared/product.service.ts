@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+
 import { Product } from '../models/product';
+import { Purchase } from '../models/purchase';
+
 
 @Injectable()
 export class ProductService {
@@ -37,4 +40,18 @@ export class ProductService {
     let uri:string = "api/products/" + product.id;
     return this.http.delete(uri);
   }
+
+  // Purchasing products as new customer
+  purchaseProducts(purchase: Purchase) {
+    // TODO:
+    // Check if there is token in storage -> user logged in -> add token to headers
+    // Obs! Bearer tag can't be empty, else request fails on Edge browser.
+    const headers = new Headers({'Bearer': 'temppi'});
+    const options = new RequestOptions({ headers: headers });
+
+    console.log(options)
+    console.log(purchase)
+    return this.http.post('/api/purchases', purchase, options);
+  }
+
 }

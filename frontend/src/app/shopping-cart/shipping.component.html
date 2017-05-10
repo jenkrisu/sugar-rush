@@ -1,0 +1,102 @@
+<div class="container clear-navbar">
+  <!-- Show stepper -->
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center cart-icons">
+      <a routerLink="/shoppingcart">
+        <i class="material-icons cart-icon">shopping_cart</i>
+      </a>
+      <span class="line"></span>
+      <a routerLink="/shoppingcart/contactinfo">
+        <i class="material-icons cart-icon">home</i>
+      </a>
+      <span class="line"></span>
+      <a routerLink="/shoppingcart/shipping">
+        <i class="material-icons cart-icon active-icon">local_shipping</i>
+      </a>
+      <span class="line-dotted"></span>
+      <i class="material-icons cart-icon">credit_card</i>
+      <span class="line-dotted"></span>
+      <i class="material-icons cart-icon">done</i>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h3 class="text-center">Shipping</h3>
+    </div>
+  </div>
+
+  <div *ngIf="customer.firstName && customer.lastName && customer.address && customer.deliveryAddress" class="row justify-content-center">
+    <div class="col-md-4">
+      <h4>Billing Information</h4>
+      <address>
+        <i class="material-icons confirmation-icon">person</i> {{ customer.firstName }} {{ customer.lastName }} <br />
+        <i class="material-icons confirmation-icon">home</i> {{ customer.address.street }} <br />
+        <span class="iconless">{{ customer.address.city }}, {{ customer.address.postal }}</span> <br />
+        <span class="iconless">{{ customer.address.country }}</span>
+        </address>
+    </div>
+    <div class="col-md-4">
+      <h4>Shipping Information</h4>
+      <address>
+        <i class="material-icons confirmation-icon">person</i> {{ customer.firstName }} {{ customer.lastName }} <br />
+        <i class="material-icons confirmation-icon">home</i> {{ customer.deliveryAddress.street }} <br />
+        <span class="iconless">{{ customer.deliveryAddress.city }}, {{ customer.deliveryAddress.postal }}</span> <br />
+        <span class="iconless">{{ customer.deliveryAddress.country }}</span>
+      </address>
+      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#shippingForm" aria-expanded="false" aria-controls="shippingForm">
+         Change shipping address
+      </button>
+      <div id="shippingForm" class="collapse">
+        <div class="card card-block">
+          <div class="alert alert-info" role="alert">
+            <i class="material-icons info-icon">info_outline</i> Fields with asterisk (*) are required.
+          </div>
+          <form>
+            <div class="form-group" [class.has-danger]="deliveryStreetError">
+              <label>Street address*</label>
+              <input name="deliveryStreet" [(ngModel)]="deliveryStreet" type="text" class="form-control form-control-danger">
+              <div *ngIf="deliveryStreetError" class="form-control-feedback">Field is required.</div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="form-group" [class.has-danger]="deliveryPostalError">
+                  <label>Post code*</label>
+                  <input name="deliveryPostal" [(ngModel)]="deliveryPostal" type="text" class="form-control form-control-danger">
+                  <div *ngIf="deliveryPostalError" class="form-control-feedback">Field is required.</div>
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="form-group" [class.has-danger]="deliveryCityError">
+                  <label>City*</label>
+                  <input name="deliveryCity" [(ngModel)]="deliveryCity" type="text" class="form-control form-control-danger">
+                  <div *ngIf="deliveryCityError" class="form-control-feedback">Field is required.</div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="cannotContinue" class="alert alert-danger" role="alert">
+              <i class="material-icons info-icon">error_outline</i> Please fill out required fields.
+            </div>
+            <button (click)="changeAddress()" class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#' + dataTarget" aria-expanded="false" aria-controls="shippingForm">
+              Change address
+            </button>
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#shippingForm" aria-expanded="false" aria-controls="shippingForm">
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center bottom-navigation">
+    <div class="col-6 col-md-4">
+      <button routerLink="/shoppingcart/contactinfo" type="button" class="btn btn-secondary">Previous</button>
+    </div>
+    <div class="col-6 col-md-4 text-right">
+      <button routerLink="/shoppingcart/payment" type="button" class="btn btn-primary">Continue</button>
+    </div>
+  </div>
+</div>

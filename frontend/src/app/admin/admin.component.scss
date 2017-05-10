@@ -1,13 +1,22 @@
-.container {
-  margin-top: 100px;
-}
-
 .rounded {
   padding: 16px;
-  max-height: 15rem;
-  max-width: 15rem;
+  max-width: 10rem;
 }
 
 .card {
   margin-bottom: 16px;
 }
+
+.add-product-close-button-top {
+  float: right;
+}
+
+.navbar {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0;
+}
+
+.add-product-button {
+  margin-bottom: 10px;
+}
+

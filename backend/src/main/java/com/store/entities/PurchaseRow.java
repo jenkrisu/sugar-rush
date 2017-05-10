@@ -17,7 +17,7 @@ public class PurchaseRow {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private int Id;
 
     /**
      * Foreign key purchase_id.
@@ -37,5 +37,13 @@ public class PurchaseRow {
      * Amount of product.
      */
     private int amount;
+
+    public PurchaseRow() {}
+
+    public PurchaseRow(Purchase purchase, Product product, int amount) {
+        this.purchase = purchase;
+        this.product = product;
+        this.amount = amount;
+    }
 
 }

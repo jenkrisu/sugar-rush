@@ -14,6 +14,19 @@ Roboto,
 "Helvetica Neue",
 Arial,
 sans-serif !default;
+
+$red: #7f1606;
+$custom-navbar-color: #fff;
+
+$navbar-light-color: rgba($custom-navbar-color, .7);
+$navbar-light-hover-color: rgba($custom-navbar-color, .8);
+$navbar-light-active-color: rgba($custom-navbar-color, .9);
+$navbar-light-disabled-color: rgba($custom-navbar-color, .3);
+$navbar-light-toggler-border: rgba($custom-navbar-color, .3);
+
+$navbar-light-toggler-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$custom-navbar-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"), "#", "%23");
+
+
 // Reset and dependencies
 @import "~bootstrap/scss/normalize";
 @import "~bootstrap/scss/print";
@@ -52,6 +65,15 @@ sans-serif !default;
 @import "~bootstrap/scss/carousel";
 // Utility classes
 @import "~bootstrap/scss/utilities";
+
+.navbar {
+  background-color: $red !important;
+}
+
+.navbar-toggler, .navbar-toggler-icon {
+  color: blue !important;
+}
+
 #center-loader {
   text-align: center;
   width: 150px;
@@ -81,21 +103,12 @@ sans-serif !default;
 
 .navbar-brand {
   font-family: 'Federo', $font-family-sans-serif;
+  color: rgba($custom-navbar-color, .9) !important;
 }
 
 .navbar {
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0px 1px 4px -2px rgba(0, 0, 0, 0.55);
-  a {
-    color: $navbar-light-color;
-    &:hover {
-      color: $navbar-light-hover-color;
-    }
-    &:active,
-    &:focus {
-      color: $navbar-light-active-color;
-    }
-  }
 }
 
 .navbar-toggler:hover {
@@ -110,8 +123,19 @@ footer {
   height: 50px;
 }
 
-h4 {
-  padding-bottom: 20px;
+/* Shopping lines cart */
+.line {
+  width: 20px;
+  display: inline-block;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+}
+
+.line-dotted {
+  width: 20px;
+  display: inline-block;
+  border-bottom: 2px dotted rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
 }
 
 
@@ -125,12 +149,26 @@ h4 {
   .additional-text {
     display: inline-block;
   }
+
+  .line, .line-dotted {
+    width: 50px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .line, .line-dotted {
+    width: 100px;
+  }
 }
 
 
 /* Fixes for bug in sticky navigation menu when display is small */
 
 @include media-breakpoint-down(md) {
+  .order-options-divider {
+    margin-top: 0px !important;
+  }
+
   #nav-container {
     margin-left: 0px;
   }
