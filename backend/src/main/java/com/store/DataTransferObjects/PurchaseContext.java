@@ -3,6 +3,8 @@ package com.store.DataTransferObjects;
 import lombok.Data;
 
 /**
+ * Manages receiving purchase information.
+ * <p>
  * Created by Jenni on 24.4.2017.
  */
 
@@ -13,7 +15,7 @@ public class PurchaseContext {
      * Contains billing address.
      */
     private CustomerDto customer;
-    
+
     /**
      * Shopping cart.
      */

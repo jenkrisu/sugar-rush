@@ -5,6 +5,8 @@ import lombok.Data;
 import java.util.List;
 
 /**
+ * Manages receiving cart information.
+ * <p>
  * Created by Jenni on 28.4.2017.
  */
 @Data

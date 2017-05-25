@@ -6,6 +6,8 @@ import org.springframework.data.rest.webmvc.RepositoryRestController;
 import javax.annotation.PostConstruct;
 
 /**
+ * Controls product repository.
+ * <p>
  * Created by Jenni on 7.4.2017.
  */
 

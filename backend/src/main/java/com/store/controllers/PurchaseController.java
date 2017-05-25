@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Controller for purchase repository.
+ * <p>
  * Created by Jenni on 24.4.2017.
  */
 

@@ -8,10 +8,29 @@ import lombok.Data;
 @Data
 public class NewAccountDto {
 
+    /**
+     * Customer's email
+     */
     private String email;
+
+    /**
+     * Customers password
+     */
     private String password;
+
+    /**
+     * Customers role
+     */
     private String role;
+
+    /**
+     * First name
+     */
     private String firstName;
+
+    /**
+     * Last name
+     */
     private String lastName;
 
 }
