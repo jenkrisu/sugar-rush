@@ -6,14 +6,18 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 /**
- * Created by Jenni on 24.4.2017.
+ * PurchaseRepository is a repository class for purchase entities.
+ *
+ * @author  Jenni Unkuri
+ * @version 2017-04-24
+ * @since   1.8
  */
 @RepositoryRestResource
 public interface PurchaseRepository extends CrudRepository<Purchase, Integer> {
 
     /**
      * Prevents deleting purchase.
-     * @param id Purchase id
+     * @param id purchase id
      */
     @Override
     @RestResource(exported = false)
@@ -21,7 +25,7 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Integer> {
 
     /**
      * Prevents deleting purchase.
-     * @param purchase Purchase
+     * @param purchase purchase
      */
     @Override
     @RestResource(exported = false)
@@ -29,7 +33,7 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Integer> {
 
     /**
      * Prevent deleting purchases.
-     * @param purchases
+     * @param purchases purchases
      */
     @Override
     @RestResource(exported = false)

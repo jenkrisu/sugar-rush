@@ -5,9 +5,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by Jenni on 4.4.2017.
+ * ProductRepository is a repository class for product entities.
+ *
+ * @author  Jenni Unkuri
+ * @version 2017-04-04
+ * @since   1.8
  */
-
 @RepositoryRestResource
 public interface ProductRepository extends CrudRepository<Product, Integer> {
 }

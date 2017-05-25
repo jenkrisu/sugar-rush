@@ -6,7 +6,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by Jenni on 4.4.2017.
+ * Product is an entity class for a product item for the product table.
+ * It consists of product related data.
+ *
+ * @author  Jenni Unkuri
+ * @version 2017-04-4
+ * @since   1.8
  */
 @Entity
 @Data
@@ -72,6 +77,18 @@ public class Product {
      */
     public Product() {}
 
+    /**
+     * Constructs a product by the given parameters.
+     *
+     * @param title         product's title
+     * @param categories    product's categories
+     * @param description   product's description
+     * @param ingredients   product's ingredients
+     * @param weight        product's weight
+     * @param price         product's price
+     * @param stock         product's stock amount
+     * @param image         product's image url
+     */
     public Product(String title, String categories, String description, String ingredients, int weight, double price,
                    int stock, String image) {
         this.title = title;
