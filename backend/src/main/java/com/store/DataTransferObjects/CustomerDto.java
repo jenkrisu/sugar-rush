@@ -4,6 +4,8 @@ import lombok.Data;
 
 
 /**
+ * Manages receiving customer information.
+ * <p>
  * Created by Jenni on 24.4.2017.
  */
 
