@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
+ * Controls account repository.
+ * <p>
  * Created by Ville on 27.4.2017.
  */
 @RepositoryRestController
@@ -28,6 +30,6 @@ public class AccountController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createAccount(@RequestBody @Validated NewAccountDto account) {
         accountRepository.save(new Account(new Customer(account.getFirstName(), account.getLastName(),
-                account.getEmail()),account.getEmail(), account.getPassword(), account.getRole()));
+                account.getEmail()), account.getEmail(), account.getPassword(), account.getRole()));
     }
 }

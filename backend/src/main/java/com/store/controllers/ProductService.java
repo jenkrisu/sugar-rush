@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * Services product controller.
+ * <p>
+ * Main task of this service is to populate the database with products.
+ * <p>
  * Created by Jenni on 7.4.2017.
  */
 

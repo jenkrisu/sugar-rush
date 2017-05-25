@@ -4,6 +4,8 @@ import com.store.entities.Product;
 import lombok.Data;
 
 /**
+ * Defines cart item.
+ * <p>
  * Created by Jenni on 24.4.2017.
  */
 

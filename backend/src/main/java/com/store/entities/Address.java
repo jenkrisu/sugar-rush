@@ -7,7 +7,12 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
- * Created by Ville on 27.4.2017.
+ * Address is an entity class for an address item for the address table.
+ * It consists of address related data.
+ *
+ * @author  Ville Haapavaara
+ * @version 2017-04-27
+ * @since   1.8
  */
 @Entity
 @Data
@@ -47,9 +52,21 @@ public class Address {
      */
     private String country;
 
+    /**
+     * Default constructor.
+     */
     public Address() {
+
     }
 
+    /**
+     * Constructs an address entity without the customer data.
+     *
+     * @param street    street of the address
+     * @param city      city of the address
+     * @param postal    postal code of the address
+     * @param country   country of the address
+     */
     public Address(String street, String city, String postal, String country) {
         this.street = street;
         this.city = city;
@@ -57,6 +74,15 @@ public class Address {
         this.country = country;
     }
 
+    /**
+     * Constructs an address entity with customer data.
+     *
+     * @param street    street of the address
+     * @param city      city of the address
+     * @param postal    postal code of the address
+     * @param country   country of the address
+     * @param customer  customer related to the address
+     */
     public Address(String street, String city, String postal, String country, Customer customer) {
         this.street = street;
         this.city = city;
